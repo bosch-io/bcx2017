@@ -1,0 +1,530 @@
+{
+  "info": {
+    "_postman_id": "ddf88733-71fd-b465-6e37-2997a516c0fa",
+    "description": "",
+    "name": "BCX2017-Things",
+    "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Create: A new Attribute at an existing Thing",
+      "request": {
+        "body": {
+          "mode": "raw",
+          "raw": "\"dummyValue2\"\n"
+        },
+        "description": "",
+        "header": [
+          {
+            "description": "",
+            "key": "x-cr-api-token",
+            "value": "{{x-cr-api-token}}"
+          },
+          {
+            "description": "",
+            "key": "Authorization",
+            "value": "{{authorization}}"
+          }
+        ],
+        "method": "PUT",
+        "url": "{{craas.baseurl}}/things/{{namespace}}:{{default-device}}/attributes/dummyAttribute2"
+      },
+      "response": []
+    },
+    {
+      "name": "Create: A new Property of a Thing's Feature",
+      "request": {
+        "body": {
+          "mode": "raw",
+          "raw": "1400"
+        },
+        "description": "",
+        "header": [
+          {
+            "description": "",
+            "key": "x-cr-api-token",
+            "value": "{{x-cr-api-token}}"
+          },
+          {
+            "description": "",
+            "key": "Authorization",
+            "value": "{{authorization}}"
+          }
+        ],
+        "method": "PUT",
+        "url": "{{craas.baseurl}}/things/{{namespace}}:{{default-device}}/features/feature1/properties/brightness"
+      },
+      "response": []
+    },
+    {
+      "name": "Update: An existing Attribute at an existing Thing",
+      "request": {
+        "body": {
+          "mode": "raw",
+          "raw": "\"newDummyValue\""
+        },
+        "description": "",
+        "header": [
+          {
+            "description": "",
+            "key": "x-cr-api-token",
+            "value": "{{x-cr-api-token}}"
+          },
+          {
+            "description": "",
+            "key": "Authorization",
+            "value": "{{authorization}}"
+          }
+        ],
+        "method": "PUT",
+        "url": "{{craas.baseurl}}/things/{{namespace}}:{{default-device}}/attributes/dummyAttribute"
+      },
+      "response": []
+    },
+    {
+      "name": "Update: All Features of a Thing",
+      "request": {
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"feature1\":{\n        \"properties\":{\n            \"prop1\":\"val1\"\n        }\n    },\n  \"test\":{\n        \"properties\":{\n            \"foo2\":\"bar2\"\n        }\n    }\n}"
+        },
+        "description": "",
+        "header": [
+          {
+            "description": "",
+            "key": "x-cr-api-token",
+            "value": "{{x-cr-api-token}}"
+          },
+          {
+            "description": "",
+            "key": "Authorization",
+            "value": "{{authorization}}"
+          }
+        ],
+        "method": "PUT",
+        "url": "{{craas.baseurl}}/things/{{namespace}}:{{default-device}}/features"
+      },
+      "response": []
+    },
+    {
+      "name": "Update: Feature of a Thing",
+      "request": {
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"properties\":{\n        \"prop1\":\"val1\"\n    }\n}"
+        },
+        "description": "",
+        "header": [
+          {
+            "description": "",
+            "key": "x-cr-api-token",
+            "value": "{{x-cr-api-token}}"
+          },
+          {
+            "description": "",
+            "key": "Authorization",
+            "value": "{{authorization}}"
+          }
+        ],
+        "method": "PUT",
+        "url": "{{craas.baseurl}}/things/{{namespace}}:{{default-device}}/features/feature1"
+      },
+      "response": []
+    },
+    {
+      "name": "Update: All Properties of a Thing's Feature",
+      "request": {
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"prop1\": \"val1\",\n  \"humidity\": 73,\n  \"barometricPressure\": 970.7,\n  \"location\": {\n    \"longitude\": 47.682170,\n    \"latitude\": 9.386372\n  },\n  \"altitude\": 399\n}"
+        },
+        "description": "",
+        "header": [
+          {
+            "description": "",
+            "key": "x-cr-api-token",
+            "value": "{{x-cr-api-token}}"
+          },
+          {
+            "description": "",
+            "key": "Authorization",
+            "value": "{{authorization}}"
+          }
+        ],
+        "method": "PUT",
+        "url": "{{craas.baseurl}}/things/{{namespace}}:{{default-device}}/features/feature1/properties"
+      },
+      "response": []
+    },
+    {
+      "name": "Update: One Property of a Thing's Feature",
+      "request": {
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"longitude\": 49.008085,\n  \"latitude\": 8.403756\n}"
+        },
+        "description": "",
+        "header": [
+          {
+            "description": "",
+            "key": "x-cr-api-token",
+            "value": "{{x-cr-api-token}}"
+          },
+          {
+            "description": "",
+            "key": "Authorization",
+            "value": "{{authorization}}"
+          }
+        ],
+        "method": "PUT",
+        "url": "{{craas.baseurl}}/things/{{namespace}}:{{default-device}}/features/EnvironmentScanner/properties/prop1"
+      },
+      "response": []
+    },
+    {
+      "name": "Search: All Things",
+      "request": {
+        "body": {},
+        "description": "",
+        "header": [
+          {
+            "description": "",
+            "key": "x-cr-api-token",
+            "value": "{{x-cr-api-token}}"
+          },
+          {
+            "description": "",
+            "key": "Authorization",
+            "value": "{{authorization}}"
+          }
+        ],
+        "method": "GET",
+        "url": "{{craas.baseurl}}/search/things"
+      },
+      "response": []
+    },
+    {
+      "name": "Query: A List of Things",
+      "request": {
+        "body": {},
+        "description": "",
+        "header": [
+          {
+            "description": "",
+            "key": "x-cr-api-token",
+            "value": "{{x-cr-api-token}}"
+          },
+          {
+            "description": "",
+            "key": "Authorization",
+            "value": "{{authorization}}"
+          }
+        ],
+        "method": "GET",
+        "url": "{{craas.baseurl}}/things?ids={{namespace}}:rrc.655997720,{{namespace}}:{{default-device}}"
+      },
+      "response": []
+    },
+    {
+      "name": "Query: A List of Things (thingId,acl)",
+      "request": {
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "description": "Queries a list of Things with the \"thingId\" and \"acl\" field selector",
+        "header": [
+          {
+            "description": "",
+            "key": "x-cr-api-token",
+            "value": "{{x-cr-api-token}}"
+          },
+          {
+            "description": "",
+            "key": "Authorization",
+            "value": "{{authorization}}"
+          }
+        ],
+        "method": "GET",
+        "url": "{{craas.baseurl}}/things?ids={{namespace}}:rrc.655997720,{{namespace}}:{{default-device}}&fields=thingId,acl"
+      },
+      "response": []
+    },
+    {
+      "name": "Query: One Thing",
+      "request": {
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "description": "",
+        "header": [
+          {
+            "description": "",
+            "key": "x-cr-api-token",
+            "value": "{{x-cr-api-token}}"
+          },
+          {
+            "description": "",
+            "key": "Authorization",
+            "value": "{{authorization}}"
+          }
+        ],
+        "method": "GET",
+        "url": "{{craas.baseurl}}/things/{{namespace}}:{{default-device}}"
+      },
+      "response": []
+    },
+    {
+      "name": "Query: One Thing (thingId,acl)",
+      "request": {
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "description": "Queries a Thing with the \"thingId\" and \"acl\" field selector.",
+        "header": [
+          {
+            "description": "",
+            "key": "x-cr-api-token",
+            "value": "{{x-cr-api-token}}"
+          },
+          {
+            "description": "",
+            "key": "Authorization",
+            "value": "{{authorization}}"
+          }
+        ],
+        "method": "GET",
+        "url": "{{craas.baseurl}}/things/{{namespace}}:rrc.655997720?fields=thingId,acl"
+      },
+      "response": []
+    },
+    {
+      "name": "Query: Attributes of one Thing",
+      "request": {
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "description": "",
+        "header": [
+          {
+            "description": "",
+            "key": "x-cr-api-token",
+            "value": "{{x-cr-api-token}}"
+          },
+          {
+            "description": "",
+            "key": "Authorization",
+            "value": "{{authorization}}"
+          }
+        ],
+        "method": "GET",
+        "url": "{{craas.baseurl}}/things/{{namespace}}:{{default-device}}/attributes"
+      },
+      "response": []
+    },
+    {
+      "name": "Query: Attributes of one Thing: single attribute object",
+      "request": {
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "description": "",
+        "header": [
+          {
+            "description": "",
+            "key": "x-cr-api-token",
+            "value": "{{x-cr-api-token}}"
+          },
+          {
+            "description": "",
+            "key": "Authorization",
+            "value": "{{authorization}}"
+          }
+        ],
+        "method": "GET",
+        "url": "{{craas.baseurl}}/things/{{namespace}}:{{default-device}}/attributes/dummyAttribute"
+      },
+      "response": []
+    },
+    {
+      "name": "Query: All Features of a Thing",
+      "request": {
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "description": "",
+        "header": [
+          {
+            "description": "",
+            "key": "x-cr-api-token",
+            "value": "{{x-cr-api-token}}"
+          },
+          {
+            "description": "",
+            "key": "Authorization",
+            "value": "{{authorization}}"
+          }
+        ],
+        "method": "GET",
+        "url": "{{craas.baseurl}}/things/{{namespace}}:{{default-device}}/features"
+      },
+      "response": []
+    },
+    {
+      "name": "Query: Feature of a Thing ",
+      "request": {
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "description": "",
+        "header": [
+          {
+            "description": "",
+            "key": "x-cr-api-token",
+            "value": "{{x-cr-api-token}}"
+          },
+          {
+            "description": "",
+            "key": "Authorization",
+            "value": "{{authorization}}"
+          }
+        ],
+        "method": "GET",
+        "url": "{{craas.baseurl}}/things/{{namespace}}:{{default-device}}/features/feature1"
+      },
+      "response": []
+    },
+    {
+      "name": "Query: All Properties of a Thing's Feature",
+      "request": {
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "description": "",
+        "header": [
+          {
+            "description": "",
+            "key": "x-cr-api-token",
+            "value": "{{x-cr-api-token}}"
+          },
+          {
+            "description": "",
+            "key": "Authorization",
+            "value": "{{authorization}}"
+          }
+        ],
+        "method": "GET",
+        "url": "{{craas.baseurl}}/things/{{namespace}}:{{default-device}}/features/feature1/properties"
+      },
+      "response": []
+    },
+    {
+      "name": "Query: One Property of a Thing's Feature",
+      "request": {
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "description": "",
+        "header": [
+          {
+            "description": "",
+            "key": "x-cr-api-token",
+            "value": "{{x-cr-api-token}}"
+          },
+          {
+            "description": "",
+            "key": "Authorization",
+            "value": "{{authorization}}"
+          }
+        ],
+        "method": "GET",
+        "url": "{{craas.baseurl}}/things/{{namespace}}:{{default-device}}/features/feature1/properties/prop1"
+      },
+      "response": []
+    },
+    {
+      "name": "Delete: Attribute of a Thing",
+      "request": {
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "description": "",
+        "header": [
+          {
+            "description": "",
+            "key": "x-cr-api-token",
+            "value": "{{x-cr-api-token}}"
+          },
+          {
+            "description": "",
+            "key": "Authorization",
+            "value": "{{authorization}}"
+          }
+        ],
+        "method": "DELETE",
+        "url": "{{craas.baseurl}}/things/{{namespace}}:{{default-device}}/attributes/dummyAttribute"
+      },
+      "response": []
+    },
+    {
+      "name": "Delete: All Properties of a Thing's Feature",
+      "request": {
+        "body": {
+          "mode": "raw",
+          "raw": "1400"
+        },
+        "description": "",
+        "header": [
+          {
+            "description": "",
+            "key": "x-cr-api-token",
+            "value": "{{x-cr-api-token}}"
+          },
+          {
+            "description": "",
+            "key": "Authorization",
+            "value": "{{authorization}}"
+          }
+        ],
+        "method": "DELETE",
+        "url": "{{craas.baseurl}}/things/{{namespace}}:{{default-device}}/features/feature1/properties"
+      },
+      "response": []
+    },
+    {
+      "name": "Delete: One Property of a Thing's Feature",
+      "request": {
+        "body": {
+          "mode": "raw",
+          "raw": "1400"
+        },
+        "description": "",
+        "header": [
+          {
+            "description": "",
+            "key": "x-cr-api-token",
+            "value": "{{x-cr-api-token}}"
+          },
+          {
+            "description": "",
+            "key": "Authorization",
+            "value": "{{authorization}}"
+          }
+        ],
+        "method": "DELETE",
+        "url": "{{craas.baseurl}}/things/{{namespace}}:{{default-device}}/features/feature1/properties/prop1"
+      },
+      "response": []
+    }
+  ],
+  "variables": []
+}

@@ -1,0 +1,24 @@
+<component name="libraryTable">
+  <library name="GOPATH &lt;Golang&gt;">
+    <CLASSES>
+      <root url="file://$USER_HOME$/gocode/src/golang.org" />
+      <root url="file://$USER_HOME$/gocode/src/sourcegraph.com" />
+      <root url="file://$USER_HOME$/gocode/src/github.com" />
+      <root url="file://$USER_HOME$/gocode/src/qpid.apache.org" />
+      <root url="file:///usr/local/share/gocode/src/qpid.apache.org" />
+      <root url="file://$USER_HOME$/gocode/src/gopkg.in" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://$USER_HOME$/gocode/src/golang.org" />
+      <root url="file://$USER_HOME$/gocode/src/sourcegraph.com" />
+      <root url="file://$USER_HOME$/gocode/src/github.com" />
+      <root url="file://$USER_HOME$/gocode/src/qpid.apache.org" />
+      <root url="file:///usr/local/share/gocode/src/qpid.apache.org" />
+      <root url="file://$USER_HOME$/gocode/src/gopkg.in" />
+    </SOURCES>
+    <excluded>
+      <root url="file://$PROJECT_DIR$" />
+    </excluded>
+  </library>
+</component>
