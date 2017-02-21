@@ -1,0 +1,33 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="CSharpRuntimeCameo.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="path" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="selectedAnalysis1" Type="System.String" Scope="User">
+      <Value Profile="(Default)">analysis</Value>
+    </Setting>
+    <Setting Name="selectedAnalysis2" Type="System.String" Scope="User">
+      <Value Profile="(Default)">analysis</Value>
+    </Setting>
+    <Setting Name="selectedAnalysis3" Type="System.String" Scope="User">
+      <Value Profile="(Default)">analysis</Value>
+    </Setting>
+    <Setting Name="selectedAnalysis4" Type="System.String" Scope="User">
+      <Value Profile="(Default)">analysis</Value>
+    </Setting>
+    <Setting Name="selectedIndex1" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="selectedIndex2" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="selectedIndex3" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="selectedIndex4" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+  </Settings>
+</SettingsFile>

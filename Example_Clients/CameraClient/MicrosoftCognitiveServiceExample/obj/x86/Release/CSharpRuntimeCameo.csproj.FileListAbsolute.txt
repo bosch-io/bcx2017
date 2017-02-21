@@ -1,0 +1,29 @@
+C:\Users\HJE1SGP\Desktop\Experience Centre\MSDemo\CSharpRuntimeCameo\bin\x86\Release\CSharpRuntimeCameo.exe.config
+C:\Users\HJE1SGP\Desktop\Experience Centre\MSDemo\CSharpRuntimeCameo\bin\x86\Release\CSharpRuntimeCameo.exe
+C:\Users\HJE1SGP\Desktop\Experience Centre\MSDemo\CSharpRuntimeCameo\bin\x86\Release\CSharpRuntimeCameo.pdb
+C:\Users\HJE1SGP\Desktop\Experience Centre\MSDemo\CSharpRuntimeCameo\bin\x86\Release\Bosch.VideoSDK.AxCameoLib.dll
+C:\Users\HJE1SGP\Desktop\Experience Centre\MSDemo\CSharpRuntimeCameo\bin\x86\Release\Bosch.VideoSDK.CameoLib.dll
+C:\Users\HJE1SGP\Desktop\Experience Centre\MSDemo\CSharpRuntimeCameo\bin\x86\Release\Bosch.VideoSDK.GCALib.dll
+C:\Users\HJE1SGP\Desktop\Experience Centre\MSDemo\CSharpRuntimeCameo\bin\x86\Release\Newtonsoft.Json.dll
+C:\Users\HJE1SGP\Desktop\Experience Centre\MSDemo\CSharpRuntimeCameo\bin\x86\Release\Newtonsoft.Json.xml
+C:\Users\HJE1SGP\Desktop\Experience Centre\MSDemo\CSharpRuntimeCameo\obj\x86\Release\CSharpRuntimeCameo.MainWindow.resources
+C:\Users\HJE1SGP\Desktop\Experience Centre\MSDemo\CSharpRuntimeCameo\obj\x86\Release\CSharpRuntimeCameo.SettingsWindow.resources
+C:\Users\HJE1SGP\Desktop\Experience Centre\MSDemo\CSharpRuntimeCameo\obj\x86\Release\CSharpRuntimeCameo.csproj.GenerateResource.Cache
+C:\Users\HJE1SGP\Desktop\Experience Centre\MSDemo\CSharpRuntimeCameo\obj\x86\Release\CSharpRuntimeCameo.exe
+C:\Users\HJE1SGP\Desktop\Experience Centre\MSDemo\CSharpRuntimeCameo\obj\x86\Release\CSharpRuntimeCameo.pdb
+C:\Users\HJE1SGP\Desktop\Experience Centre\MSDemo\CSharpRuntimeCameo\obj\x86\Release\CSharpRuntimeCameo.csprojResolveAssemblyReference.cache
+C:\Download\NewMicrosoftCognitiveServices\CSharpRuntimeCameo\bin\x86\Release\CSharpRuntimeCameo.exe.config
+C:\Download\NewMicrosoftCognitiveServices\CSharpRuntimeCameo\obj\x86\Release\CSharpRuntimeCameo.exe
+C:\Download\NewMicrosoftCognitiveServices\CSharpRuntimeCameo\obj\x86\Release\CSharpRuntimeCameo.pdb
+C:\Download\NewMicrosoftCognitiveServices\CSharpRuntimeCameo\bin\x86\Release\CSharpRuntimeCameo.exe
+C:\Download\NewMicrosoftCognitiveServices\CSharpRuntimeCameo\bin\x86\Release\CSharpRuntimeCameo.pdb
+C:\Download\NewMicrosoftCognitiveServices\CSharpRuntimeCameo\bin\x86\Release\Bosch.VideoSDK.AxCameoLib.dll
+C:\Download\NewMicrosoftCognitiveServices\CSharpRuntimeCameo\bin\x86\Release\Bosch.VideoSDK.CameoLib.dll
+C:\Download\NewMicrosoftCognitiveServices\CSharpRuntimeCameo\bin\x86\Release\Bosch.VideoSDK.GCALib.dll
+C:\Download\NewMicrosoftCognitiveServices\CSharpRuntimeCameo\bin\x86\Release\Newtonsoft.Json.dll
+C:\Download\NewMicrosoftCognitiveServices\CSharpRuntimeCameo\bin\x86\Release\stdole.dll
+C:\Download\NewMicrosoftCognitiveServices\CSharpRuntimeCameo\bin\x86\Release\Newtonsoft.Json.xml
+C:\Download\NewMicrosoftCognitiveServices\CSharpRuntimeCameo\obj\x86\Release\CSharpRuntimeCameo.csprojResolveAssemblyReference.cache
+C:\Download\NewMicrosoftCognitiveServices\CSharpRuntimeCameo\obj\x86\Release\CSharpRuntimeCameo.MainWindow.resources
+C:\Download\NewMicrosoftCognitiveServices\CSharpRuntimeCameo\obj\x86\Release\CSharpRuntimeCameo.SettingsWindow.resources
+C:\Download\NewMicrosoftCognitiveServices\CSharpRuntimeCameo\obj\x86\Release\CSharpRuntimeCameo.csproj.GenerateResource.Cache

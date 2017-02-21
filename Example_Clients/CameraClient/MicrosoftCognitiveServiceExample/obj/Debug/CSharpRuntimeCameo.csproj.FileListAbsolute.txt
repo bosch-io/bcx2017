@@ -1,0 +1,15 @@
+C:\Users\HJE1SGP\Desktop\Experience Centre\MSDemo\CSharpRuntimeCameo\obj\Debug\CSharpRuntimeCameo.csprojResolveAssemblyReference.cache
+C:\Users\HJE1SGP\Desktop\Experience Centre\MSDemo\CSharpRuntimeCameo\obj\Debug\CSharpRuntimeCameo.MainWindow.resources
+C:\Users\HJE1SGP\Desktop\Experience Centre\MSDemo\CSharpRuntimeCameo\obj\Debug\CSharpRuntimeCameo.Properties.Resources.resources
+C:\Users\HJE1SGP\Desktop\Experience Centre\MSDemo\CSharpRuntimeCameo\obj\Debug\CSharpRuntimeCameo.SettingsWindow.resources
+C:\Users\HJE1SGP\Desktop\Experience Centre\MSDemo\CSharpRuntimeCameo\obj\Debug\CSharpRuntimeCameo.csproj.GenerateResource.Cache
+C:\Users\HJE1SGP\Desktop\Experience Centre\MSDemo\CSharpRuntimeCameo\bin\Debug\CSharpRuntimeCameo.exe.config
+C:\Users\HJE1SGP\Desktop\Experience Centre\MSDemo\CSharpRuntimeCameo\obj\Debug\CSharpRuntimeCameo.pdb
+C:\Users\HJE1SGP\Desktop\Experience Centre\MSDemo\CSharpRuntimeCameo\bin\Debug\CSharpRuntimeCameo.exe
+C:\Users\HJE1SGP\Desktop\Experience Centre\MSDemo\CSharpRuntimeCameo\bin\Debug\CSharpRuntimeCameo.pdb
+C:\Users\HJE1SGP\Desktop\Experience Centre\MSDemo\CSharpRuntimeCameo\bin\Debug\Bosch.VideoSDK.AxCameoLib.dll
+C:\Users\HJE1SGP\Desktop\Experience Centre\MSDemo\CSharpRuntimeCameo\bin\Debug\Bosch.VideoSDK.CameoLib.dll
+C:\Users\HJE1SGP\Desktop\Experience Centre\MSDemo\CSharpRuntimeCameo\bin\Debug\Bosch.VideoSDK.GCALib.dll
+C:\Users\HJE1SGP\Desktop\Experience Centre\MSDemo\CSharpRuntimeCameo\bin\Debug\Newtonsoft.Json.dll
+C:\Users\HJE1SGP\Desktop\Experience Centre\MSDemo\CSharpRuntimeCameo\bin\Debug\Newtonsoft.Json.xml
+C:\Users\HJE1SGP\Desktop\Experience Centre\MSDemo\CSharpRuntimeCameo\obj\Debug\CSharpRuntimeCameo.exe
