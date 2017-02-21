@@ -2,7 +2,7 @@
 
 (name) is a fantastic gizmo that can be used to barify your foo.
 
-<insert foto here>
+(insert foto here)
 
 ## Available devices
 
@@ -20,6 +20,9 @@
 In addition, the device provides the following events
 - (name) fell down
 - (name) temperature exceeds threshold
+
+### Example telemetry data
+
 
 ## Ideas for using this device
 
