@@ -11,7 +11,7 @@ All available devices are described in the [Available_Devices/](Available_Device
 ## Receiving telemetry messages
 
 The connected devices feed their telemetry data and events into a messaging hub based on [Eclipse Hono](https://www.eclipse.org/hono/).
-You can receive the device data by connecting an AMQP client to Hono and listening in on the respective topics. We have prepared some example
+You can receive the device data by connecting an AMQP client to Hono and listening in on the respective addresses. We have prepared some example
 clients for you in various languages in the [Example_Clients/](Example_clients/) directory.
 
 The Eclipse Hono website has further information on the [Telemetry API](https://www.eclipse.org/hono/api/Telemetry-API/) and [Event API](https://www.eclipse.org/hono/api/Event-API/).
