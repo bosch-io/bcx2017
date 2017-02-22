@@ -31,7 +31,7 @@
 var argv = require('minimist')(process.argv.slice(2));
 
 if (argv['h'] || argv['help']) {
-    console.log("Usage: node Hono_Receiver.js --host myhostname --port 15672 --user me --pass secret");
+    console.log("Usage: node Hono_Receiver.js --host myhostname --port 15672 --user me --pass secret [ --filter regex]");
     process.exit(0);
 }
 
@@ -39,6 +39,7 @@ var optHost = argv['host'] || 'localhost';
 var optPort = argv['port'] || 15672;
 var optUsername = String(argv['user'] || '');
 var optPassword = String(argv['pass'] || '');
+var optFilter = new RegExp(String(argv['filter'] || '.*'));
 
 /* Set up AMQP connection objects */
 
@@ -126,10 +127,16 @@ connection.on('message', function (context) {
 
     switch(true) {
         case /^telemetry\//.test(resource):
+            if (!optFilter.test(device_id)) {
+                break;
+            }
             // Perform your telemetry handling here
             console.log("TELEMETRY [%s/%s] (%s) %s", tenant_id, device_id, data, JSON.stringify(data));
             break;
         case /^event\//.test(resource):
+            if (!optFilter.test(device_id)) {
+                break;
+            }
             // Perform your event handling here
             console.log("EVENT     [%s/%s] (%s) %s", tenant_id, device_id, data, JSON.stringify(data));
             break;
