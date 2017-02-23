@@ -2,8 +2,7 @@
 
 I’m a programmable sensor device & a prototyping platform for any IoT use case you can imagine.
 
-![Bosch XDK](images/Bosch_XDK_21.png "Bosch XDK"){ width=30% }
-32-bit microcontroller ARM Cortex M3
+<img src="images/Bosch_XDK_21.png " width="48">
 	
 ## Available devices
 
