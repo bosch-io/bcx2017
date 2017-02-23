@@ -1,4 +1,4 @@
-# Device intro: “(vendor) (name)”
+# “(vendor) (name)”
 
 (name) is a fantastic gizmo that can be used to barify your foo.
 
