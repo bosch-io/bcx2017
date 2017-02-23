@@ -1,4 +1,4 @@
-# Bsoch XDK
+# Bosch XDK
 
 I’m a programmable sensor device & a prototyping platform for any IoT use case you can imagine.
 
