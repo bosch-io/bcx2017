@@ -2,7 +2,7 @@
 
 I’m a programmable sensor device & a prototyping platform for any IoT use case you can imagine.
 
-<img src="images/Bosch_XDK_21.png " width="48">
+<img src="images/Bosch_XDK_21.png " width="255">
 	
 ## Available devices
 
