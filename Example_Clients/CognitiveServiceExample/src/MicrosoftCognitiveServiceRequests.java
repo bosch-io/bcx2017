@@ -3,15 +3,17 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.utils.URIBuilder;
+import org.apache.http.entity.ByteArrayEntity;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.net.URI;
+import java.nio.file.Files;
 
 public class MicrosoftCognitiveServiceRequests {
 
@@ -21,34 +23,59 @@ public class MicrosoftCognitiveServiceRequests {
         try {
             String cognitiveServiceResponse = this.SendEmotionRequest(picture, subsciptionKey);
 
-            System.out.println(cognitiveServiceResponse);
-            /*
+            // System.out.println(cognitiveServiceResponse);
 
-            List<EmotionFace> emotionfaceList = ((JsonConvert.DeserializeObject
-                    < (List < EmotionFace))
-                    + cognitiveServiceResponse.Content.ReadAsStringAsync());
+            JSONParser parser = new JSONParser();
+
+            JSONArray emotionfaceList = (JSONArray)parser.parse(cognitiveServiceResponse);
+
+            System.out.println(emotionfaceList.size());
+
             if ((emotionfaceList != null)) {
-                if ((emotionfaceList.Count == 0)) {
-                    UserInterface.resultsOfAnalysis.Text = "No faces detected. \r\n";
+                if ((emotionfaceList.size() == 0)) {
+                    UserInterface.resultsOfAnalysis.setText("No faces detected. \r\n");
                 }
                 else {
-                    for (int index = 0; (index < emotionfaceList.Count); index++) {
-                        UserInterface.CameraSnapshot.SizeMode = PictureBoxSizeMode.CenterImage;
-                        UserInterface.CameraSnapshot.Image = UserInterface.cropThisRect(mainbitmap, new Rectangle(emotionfaceList[index].faceRectangle.left, emotionfaceList[index].faceRectangle.top, emotionfaceList[index].faceRectangle.width, emotionfaceList[index].faceRectangle.height));
-                        UserInterface.resultsOfAnalysis.Text = ("Results: \r\n"
-                                + (String.Format("{0:P1}", emotionfaceList[index].scores.happiness) + (" happiness\r\n"
-                                + (String.Format("{0:P1}", emotionfaceList[index].scores.sadness) + (" sadness\r\n"
-                                + (String.Format("{0:P1}", emotionfaceList[index].scores.neutral) + (" neutral\r\n"
-                                + (String.Format("{0:P1}", emotionfaceList[index].scores.surprise) + (" surprise\r\n"
-                                + (String.Format("{0:P1}", emotionfaceList[index].scores.anger) + (" anger\r\n"
-                                + (String.Format("{0:P1}", emotionfaceList[index].scores.contempt) + (" contempt\r\n"
-                                + (String.Format("{0:P1}", emotionfaceList[index].scores.fear) + " fear\r\n\r\n"))))))))))))));
+                    for (int index = 0; (index < emotionfaceList.size()); index++) {
+
+                        JSONObject emotionface = (JSONObject)emotionfaceList.get(index);
+
+                        JSONObject face = (JSONObject)emotionface.get("faceRectangle");
+
+                        FaceRectangle faceRectangle = new FaceRectangle();
+
+                        faceRectangle.height = (Long) face.get("height");
+                        faceRectangle.left = (Long) face.get("left");
+                        faceRectangle.top = (Long) face.get("top");
+                        faceRectangle.width = (Long) face.get("width");
+
+                        JSONObject emotionScores = (JSONObject)emotionface.get("scores");
+
+                        Scores scores = new Scores();
+                        scores.happiness = (Double)emotionScores.get("happiness");
+                        scores.sadness = (Double)emotionScores.get("sadness");
+                        scores.neutral = (Double)emotionScores.get("neutral");
+                        scores.surprise = (Double)emotionScores.get("surprise");
+                        scores.anger = (Double)emotionScores.get("anger");
+                        scores.contempt = (Double)emotionScores.get("contempt");
+                        scores.fear = (Double)emotionScores.get("fear");
+
+                        // UserInterface.CameraSnapshot.Image = UserInterface.cropThisRect(mainbitmap, new Rectangle(emotionfaceList[index].faceRectangle.left, emotionfaceList[index].faceRectangle.top, emotionfaceList[index].faceRectangle.width, emotionfaceList[index].faceRectangle.height));
+                        UserInterface.resultsOfAnalysis.setText("Results: \r\n"
+                                + String.format("%.2f",scores.happiness*100) + " % happiness\r\n"
+                                + String.format("%.2f",scores.sadness*100) + " % sadness\r\n"
+                                + String.format("%.2f",scores.neutral*100) + " % neutral\r\n"
+                                + String.format("%.2f",scores.surprise*100) + " % surprise\r\n"
+                                + String.format("%.2f", scores.anger*100) + " % anger\r\n"
+                                + String.format("%.2f", scores.contempt*100) + " % contempt\r\n"
+                                + String.format("%.2f", scores.fear*100) + " % fear\r\n\r\n");
+
                     }
 
                 }
 
             }
-*/
+
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -67,40 +94,12 @@ public class MicrosoftCognitiveServiceRequests {
             URI uri = builder.build();
             HttpPost request = new HttpPost(uri);
 
-            boolean useJson = true;
-            StringEntity reqEntity;
+            byte[] binaryImageData = Files.readAllBytes(picture.toPath());
 
-            if (useJson)
-            {
-                request.setHeader("Content-Type", "application/json");
-                request.setHeader("Ocp-Apim-Subscription-Key", subscriptionKey);
+            request.setHeader("Content-Type", "application/octet-stream");
+            request.setHeader("Ocp-Apim-Subscription-Key", subscriptionKey);
 
-                String bildURL = "\"http://tutorials.ipp.boschsecurity.com/downloads/IPP/Facedetection/Bild1.jpg\"";
-
-                // Request body
-                reqEntity = new StringEntity("{\"url\":" + bildURL + "}");
-            }
-            else{
-                request.setHeader("Content-Type", "application/octet-stream");
-                request.setHeader("Ocp-Apim-Subscription-Key", subscriptionKey);
-
-                ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-
-                // lokal gespeichertes Bild
-                picture = new File("Resources\\Bild1.jpg");
-
-                BufferedImage imgForAnalysis = ImageIO.read(picture);
-
-                ImageIO.write(imgForAnalysis, "jpg", outputStream);
-
-                // transfer the file byte-by-byte to the response object
-
-                // funktioniert nicht :(
-                reqEntity = new StringEntity(outputStream.toString());
-
-            }
-
-            request.setEntity(reqEntity);
+            request.setEntity(new ByteArrayEntity(binaryImageData));
 
             HttpResponse response = httpclient.execute(request);
 

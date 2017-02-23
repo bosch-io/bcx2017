@@ -1,12 +1,11 @@
 
 
 public class Scores {
-    public float anger;
-    public float contempt;
-    public float disgust;
-    public float fear;
-    public float happiness;
-    public float neutral;
-    public float sadness;
-    public float surprise;
+    public double anger;
+    public double contempt;
+    public double fear;
+    public double happiness;
+    public double neutral;
+    public double sadness;
+    public double surprise;
 }

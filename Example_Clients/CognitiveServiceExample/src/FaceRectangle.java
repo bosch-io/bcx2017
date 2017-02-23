@@ -1,8 +1,11 @@
 
 
 public class FaceRectangle {
-    public int left;
-    public int top;
-    public int width;
-    public int height;
+
+    public long left;
+    public long top;
+    public long width;
+    public long height;
+
+
 }

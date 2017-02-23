@@ -14,5 +14,6 @@
     <orderEntry type="library" name="org.apache.commons.httpclient" level="project" />
     <orderEntry type="library" name="netty-all-4.1.8.Final" level="project" />
     <orderEntry type="library" name="httpmime-4.5.3" level="project" />
+    <orderEntry type="library" name="json-simple-1.1.1" level="project" />
   </component>
 </module>

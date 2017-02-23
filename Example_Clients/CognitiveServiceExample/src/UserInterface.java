@@ -7,6 +7,8 @@ import java.io.File;
 
 public class UserInterface {
 
+    public static boolean isConnected = false;
+
     public static String DEFAULT_IP;
 
     public static String SUBSCRIPTION_KEY_FOR_EMOTION;
@@ -17,19 +19,15 @@ public class UserInterface {
 
     public static Font FONT =new Font("Arial", Font.CENTER_BASELINE, 14);
 
-    public static MicrosoftCognitiveServiceRequests MicrosoftCognitiveServiceRequests = new MicrosoftCognitiveServiceRequests();
-
     public static JButton analyzeButton;
 
-    private JButton connectButton;
+    private static JButton connectButton;
 
     public static JButton automaticButton;
 
     public static boolean automaticActive = false;
 
     public static JTextField cameraURL;
-
-    private JComboBox cameraDriverComboBox;
 
     private JFrame mainFrame = new JFrame();
 
@@ -39,7 +37,7 @@ public class UserInterface {
 
     public static JLabel cameraSnapshot;
 
-    public static JLabel resultsOfAnalysis;
+    public static JFormattedTextField resultsOfAnalysis;
 
 
     public UserInterface() {
@@ -76,29 +74,7 @@ public class UserInterface {
         cameraURL.setFont(FONT);
         cameraURL.setLocation(150, 0);
         cameraURL.setName("Camera URL Textbox");
-        //
-        //  Camera Driver Label
-        //
-        JLabel cameraDriverLabel = new JLabel();
-        cameraDriverLabel.setText("Camera Driver : ");
-        cameraDriverLabel.setSize(150, 30);
-        cameraDriverLabel.setFont(FONT);
-        cameraDriverLabel.setLocation(450, 0);
-        cameraDriverLabel.setName("Camera Driver Label");
-        //
-        //  ComboBoxProgID
-        //
-        String[] drivers = {
-                "GCA.VIP.DeviceProxy",
-                "GCA.ONVIF.DeviceProxy",
-                "GCA.RTSP.DeviceProxy"};
 
-        cameraDriverComboBox = new JComboBox(drivers);
-        this.cameraDriverComboBox.setName("Camera Driver");
-        this.cameraDriverComboBox.setLocation(600, 0);
-        this.cameraDriverComboBox.setFont(FONT);
-        this.cameraDriverComboBox.setSize(250, 30);
-        this.cameraDriverComboBox.setSelectedIndex(0);
         //
         //  Subscribtion Key Label
         //
@@ -187,7 +163,7 @@ public class UserInterface {
         //
         //  Result label
         //
-        resultsOfAnalysis = new JLabel();
+        resultsOfAnalysis = new JFormattedTextField("");
         resultsOfAnalysis.setLocation(1600, 140);
         resultsOfAnalysis.setSize(300, 300);
         resultsOfAnalysis.setText("Results: \r\n" + (" x % " + ("happiness\r\n" + (" x % " + ("sadness\r\n" + (" x % " + ("neutral\r\n" + (" x % " + ("surprise\r\n" + (" x % " + ("anger\r\n" + (" x % " + ("contempt\r\n" + (" x % " + "fear\r\n\r\n"))))))))))))));
@@ -200,13 +176,12 @@ public class UserInterface {
 
         mainFrame.setLayout(new FlowLayout());
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        mainFrame.setSize(1850, 500);
+        mainFrame.setSize(1000, 800);
 
         mainFrame.add(urlLabel);
         mainFrame.add(cameraURL);
         mainFrame.add(connectButton);
-        mainFrame.add(cameraDriverLabel);
-        mainFrame.add(cameraDriverComboBox);
+
         mainFrame.add(subsciptionKeyLabel);
         mainFrame.add(subsciptionKey);
         mainFrame.add(cameoPanel);
@@ -229,7 +204,20 @@ public class UserInterface {
     }
 
     public static boolean isConnected() {
-        return true;
+        return isConnected;
+    }
+
+    public static void changeConnectionStatus()
+    {
+        if(isConnected)
+        {
+            isConnected = false;
+            connectButton.setText("Connect");
+        }
+        else {
+            isConnected = true;
+            connectButton.setText("Disconnect");
+        }
     }
 
 }

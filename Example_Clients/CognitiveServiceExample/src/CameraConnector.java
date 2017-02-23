@@ -6,8 +6,25 @@ import java.net.URL;
 
 public class CameraConnector extends Thread {
 
+    private boolean isConnected = false;
+
+    public void setIsConnected(boolean isConnected) {
+        this.isConnected = isConnected;
+    }
+
     public void run(){
-        connect();
+        while(isConnected)
+        {
+            try {
+                connect();
+            }
+            catch (Exception ex)
+            {
+                ex.printStackTrace();
+            }
+
+        }
+
     }
 
     public void connect() {
