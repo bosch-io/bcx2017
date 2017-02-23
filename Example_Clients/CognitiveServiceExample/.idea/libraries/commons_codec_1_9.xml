@@ -1,0 +1,16 @@
+<component name="libraryTable">
+  <library name="commons-codec-1.9">
+    <CLASSES>
+      <root url="jar://C:/Java/otherlibs/commons-codec-1.9.jar!/" />
+      <root url="jar://C:/Java/otherlibs/commons-io-2.5.jar!/" />
+      <root url="jar://C:/Java/otherlibs/commons-logging-1.2.jar!/" />
+      <root url="jar://C:/Java/otherlibs/httpclient-4.5.3.jar!/" />
+      <root url="jar://C:/Java/otherlibs/fluent-hc-4.5.3.jar!/" />
+      <root url="jar://C:/Java/otherlibs/httpclient-cache-4.5.3.jar!/" />
+      <root url="jar://C:/Java/otherlibs/httpclient-win-4.5.3.jar!/" />
+      <root url="jar://C:/Java/otherlibs/httpcore-4.4.6.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
