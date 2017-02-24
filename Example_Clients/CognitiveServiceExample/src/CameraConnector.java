@@ -38,7 +38,7 @@ public class CameraConnector extends Thread {
 
             if ((image != null)) {
                 ImageIcon icon = new ImageIcon(image);
-                UserInterface.cameraSnapshot.setIcon(icon);
+                UserInterface.cameraStreaming.setIcon(icon);
             }
 
         } catch (Exception e) {

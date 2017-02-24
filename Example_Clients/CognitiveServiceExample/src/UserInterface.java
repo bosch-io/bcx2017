@@ -35,7 +35,11 @@ public class UserInterface {
 
     public static JPanel cameoPanel;
 
-    public static JLabel cameraSnapshot;
+    public static JLabel cameraShotImage;
+
+    public static JLabel faceImage;
+
+    public static JLabel cameraStreaming;
 
     public static JFormattedTextField resultsOfAnalysis;
 
@@ -56,15 +60,7 @@ public class UserInterface {
     }
 
     public void InitializeGUIComponents() {
-        //
-        //  URL Label
-        //
-        JLabel urlLabel = new JLabel();
-        urlLabel.setText("Camera IP : ");
-        urlLabel.setSize(150, 20);
-        urlLabel.setFont(FONT);
-        urlLabel.setLocation(0, 0);
-        urlLabel.setName("Camera URL Label");
+
         //
         //  URL Textbox
         //
@@ -74,6 +70,16 @@ public class UserInterface {
         cameraURL.setFont(FONT);
         cameraURL.setLocation(150, 0);
         cameraURL.setName("Camera URL Textbox");
+
+        //
+        //  URL Label
+        //
+        JLabel urlLabel = new JLabel();
+        urlLabel.setText("Camera IP : ");
+        urlLabel.setSize(150, 20);
+        urlLabel.setFont(FONT);
+        urlLabel.setLocation(0, 0);
+        urlLabel.setName("Camera URL Label");
 
         //
         //  Subscribtion Key Label
@@ -93,38 +99,45 @@ public class UserInterface {
         subsciptionKey.setFont(FONT);
         subsciptionKey.setLocation(1450, 0);
         subsciptionKey.setName("Subscribtion Key Textbox");
+
         //
-        //  CameraSnapshotBox
+        //  BoschSmartEdgeDeviceLabel
         //
-        cameraSnapshot = new JLabel();
+        JLabel boschSmartEdgeDevice = new JLabel();
         //  Construct an image object from a file in the local directory.
         //  ... This file must exist in the solution.
-        String imageFileName = "Resources\\SmartEdgeDevices.png";
+        String boschSmartEdgeImageFileName = "Resources\\SmartEdgeDevices.png";
 
-        BufferedImage image = null;
-        
+        BufferedImage boschSmartEdgeImage = null;
+
         try {
-            image = ImageIO.read(new File(imageFileName));
+            boschSmartEdgeImage = ImageIO.read(new File(boschSmartEdgeImageFileName));
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        //  Set the PictureBox image property to this image.
-        //  ... Then, adjust its height and width properties.
-        if ((image != null)) {
-            ImageIcon icon = new ImageIcon(image);
-            cameraSnapshot.setIcon(icon);
-            //cameraSnapshot.setLocation(800, 30);
-            cameraSnapshot.setName("CameraSnapshotBox");
-            // cameraSnapshot.SizeMode = PictureBoxSizeMode.AutoSize;
+
+        if ((boschSmartEdgeImage != null)) {
+            ImageIcon icon = new ImageIcon(boschSmartEdgeImage);
+            boschSmartEdgeDevice.setIcon(icon);
+            boschSmartEdgeDevice.setName("CameraSnapshotBox");
         }
 
         //
-        //  Cameo Panel
+        //  CameraStreamingBox
         //
-        cameoPanel = new JPanel();
-        cameoPanel.setLocation(0, 30);
-        cameoPanel.setName("Cameo");
-        cameoPanel.setSize(800, 450);
+        cameraStreaming = new JLabel();
+
+        //
+        //  CameraStreamingBox
+        //
+        cameraShotImage = new JLabel();
+
+        //
+        //  CameraStreamingBox
+        //
+        faceImage = new JLabel();
+
+
         //
         //  Connect Button
         //
@@ -173,22 +186,31 @@ public class UserInterface {
         //  MainWindow
         //
 
+        GridBagLayout gridbag = new GridBagLayout();
+        GridBagConstraints gridBagConstraints = new GridBagConstraints();
 
-        mainFrame.setLayout(new FlowLayout());
+        mainFrame.setLayout(new GridLayout(4, 3));
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        mainFrame.setSize(1000, 800);
+        mainFrame.setSize(1200, 800);
+
+
 
         mainFrame.add(urlLabel);
+        mainFrame.add(boschSmartEdgeDevice);
+        mainFrame.add(subsciptionKeyLabel);
+
         mainFrame.add(cameraURL);
         mainFrame.add(connectButton);
-
-        mainFrame.add(subsciptionKeyLabel);
         mainFrame.add(subsciptionKey);
-        mainFrame.add(cameoPanel);
-        mainFrame.add(cameraSnapshot);
-        mainFrame.add(analyzeButton);
+
+        mainFrame.add(cameraShotImage);
+        mainFrame.add(cameraStreaming);
+        mainFrame.add(faceImage);
+
         mainFrame.add(automaticButton);
+        mainFrame.add(analyzeButton);
         mainFrame.add(resultsOfAnalysis);
+
         mainFrame.setName("Bosch Microsoft Analytic Sample");
 
 
@@ -199,8 +221,11 @@ public class UserInterface {
 
     }
 
-    public static Image cropThisRect(Image b, Rectangle r) {
-        return b.getScaledInstance(r.width,r.height,0);
+
+
+
+    public static BufferedImage cropImage(BufferedImage bufferedImage, Rectangle rectangle) {
+        return bufferedImage.getSubimage(rectangle.x, rectangle.y, rectangle.width, rectangle.height);
     }
 
     public static boolean isConnected() {

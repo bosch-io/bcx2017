@@ -1,8 +1,3 @@
-
-
-
-
-
 public class StartMicrosoftCognitiveServiceExample {
 
 

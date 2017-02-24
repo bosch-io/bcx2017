@@ -1,4 +1,6 @@
 import javax.imageio.ImageIO;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
@@ -32,9 +34,21 @@ public class AnalyzeButtonListener implements ActionListener {
 
             BufferedImage image = ImageIO.read(picture);
 
+            if ((image != null)) {
+                ImageIcon icon = new ImageIcon(image);
+                UserInterface.cameraShotImage.setIcon(icon);
+            }
+
             MicrosoftCognitiveServiceRequests microsoftCognitiveServiceRequests = new MicrosoftCognitiveServiceRequests();
 
-            microsoftCognitiveServiceRequests.Analyze(picture, UserInterface.SUBSCRIPTION_KEY_FOR_EMOTION);
+            FaceRectangle faceRectangle = microsoftCognitiveServiceRequests.Analyze(picture, UserInterface.SUBSCRIPTION_KEY_FOR_EMOTION);
+
+            Image faceImage = UserInterface.cropImage(image, new Rectangle(Math.toIntExact(faceRectangle.left), Math.toIntExact(faceRectangle.top), Math.toIntExact(faceRectangle.width), Math.toIntExact(faceRectangle.height)));
+
+            if ((faceImage != null)) {
+                ImageIcon icon = new ImageIcon(faceImage);
+                UserInterface.faceImage.setIcon(icon);
+            }
 
         } catch (Exception ex) {
             ex.printStackTrace();

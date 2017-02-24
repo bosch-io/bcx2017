@@ -18,7 +18,9 @@ import java.nio.file.Files;
 public class MicrosoftCognitiveServiceRequests {
 
 
-    public void Analyze(File picture, String subsciptionKey) {
+    public FaceRectangle Analyze(File picture, String subsciptionKey) {
+
+        FaceRectangle faceRectangle = new FaceRectangle();
 
         try {
             String cognitiveServiceResponse = this.SendEmotionRequest(picture, subsciptionKey);
@@ -29,7 +31,7 @@ public class MicrosoftCognitiveServiceRequests {
 
             JSONArray emotionfaceList = (JSONArray)parser.parse(cognitiveServiceResponse);
 
-            System.out.println(emotionfaceList.size());
+            // System.out.println(emotionfaceList.size());
 
             if ((emotionfaceList != null)) {
                 if ((emotionfaceList.size() == 0)) {
@@ -42,12 +44,10 @@ public class MicrosoftCognitiveServiceRequests {
 
                         JSONObject face = (JSONObject)emotionface.get("faceRectangle");
 
-                        FaceRectangle faceRectangle = new FaceRectangle();
-
-                        faceRectangle.height = (Long) face.get("height");
-                        faceRectangle.left = (Long) face.get("left");
                         faceRectangle.top = (Long) face.get("top");
+                        faceRectangle.left = (Long) face.get("left");
                         faceRectangle.width = (Long) face.get("width");
+                        faceRectangle.height = (Long) face.get("height");
 
                         JSONObject emotionScores = (JSONObject)emotionface.get("scores");
 
@@ -60,7 +60,6 @@ public class MicrosoftCognitiveServiceRequests {
                         scores.contempt = (Double)emotionScores.get("contempt");
                         scores.fear = (Double)emotionScores.get("fear");
 
-                        // UserInterface.CameraSnapshot.Image = UserInterface.cropThisRect(mainbitmap, new Rectangle(emotionfaceList[index].faceRectangle.left, emotionfaceList[index].faceRectangle.top, emotionfaceList[index].faceRectangle.width, emotionfaceList[index].faceRectangle.height));
                         UserInterface.resultsOfAnalysis.setText("Results: \r\n"
                                 + String.format("%.2f",scores.happiness*100) + " % happiness\r\n"
                                 + String.format("%.2f",scores.sadness*100) + " % sadness\r\n"
@@ -79,6 +78,8 @@ public class MicrosoftCognitiveServiceRequests {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+
+        return faceRectangle;
 
     }
 
@@ -103,7 +104,7 @@ public class MicrosoftCognitiveServiceRequests {
 
             HttpResponse response = httpclient.execute(request);
 
-            System.out.println(response.toString());
+            // System.out.println(response.toString());
 
             HttpEntity entity = response.getEntity();
 
