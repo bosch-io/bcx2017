@@ -1,0 +1,28 @@
+{
+  "name": "hono-receiver",
+  "version": "0.0.1",
+  "description": "\"The example script Hono_Receiver.js connects to the Hono serve                                                                                                                                                                                               r and registers telemetry and event receivers. Events received from the Hono ser                                                                                                                                                                                               ver are parsed and printed out to the command line.",
+  "main": "Hono_Receiver.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bsinno/bcx2017.git"
+  },
+  "keywords": [
+    "node.js",
+    "receiver",
+    "example"
+  ],
+  "author": "crenz",
+  "license": "SEE LICENSE IN MD FILE AT TOP LEVEL OF REPOSITORY",
+  "bugs": {
+    "url": "https://github.com/bsinno/bcx2017/issues"
+  },
+  "homepage": "https://github.com/bsinno/bcx2017#readme",
+  "dependencies": {
+    "minimist": "^1.2.0",
+    "rhea": "^0.2.0"
+  }
+}
