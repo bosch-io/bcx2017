@@ -1,0 +1,138 @@
+[
+    {
+        "id": "d9a517aa.179758",
+        "type": "tab",
+        "label": "Hono Example"
+    },
+    {
+        "id": "3d80d8e2.4421f8",
+        "type": "amqp-receiver",
+        "z": "d9a517aa.179758",
+        "endpoint": "eca61264.49fc1",
+        "address": "telemetry/bcx",
+        "autoaccept": true,
+        "creditwindow": 100,
+        "dynamic": false,
+        "sndsettlemode": "1",
+        "rcvsettlemode": 0,
+        "durable": 0,
+        "expirypolicy": "session-end",
+        "name": "telemetry",
+        "x": 162,
+        "y": 60,
+        "wires": [
+            [
+                "529cd7cd.29b84"
+            ]
+        ]
+    },
+    {
+        "id": "7be5a54.9678d5c",
+        "type": "amqp-receiver",
+        "z": "d9a517aa.179758",
+        "endpoint": "eca61264.49fc1",
+        "address": "event/bcx",
+        "autoaccept": true,
+        "creditwindow": 100,
+        "dynamic": false,
+        "sndsettlemode": "0",
+        "rcvsettlemode": "1",
+        "durable": 0,
+        "expirypolicy": "session-end",
+        "name": "event",
+        "x": 164,
+        "y": 124,
+        "wires": [
+            [
+                "529cd7cd.29b84"
+            ]
+        ]
+    },
+    {
+        "id": "853db5fc.d63a2",
+        "type": "debug",
+        "z": "d9a517aa.179758",
+        "name": "",
+        "active": false,
+        "console": "false",
+        "complete": "true",
+        "x": 549.5,
+        "y": 285,
+        "wires": []
+    },
+    {
+        "id": "529cd7cd.29b84",
+        "type": "function",
+        "z": "d9a517aa.179758",
+        "name": "DecodePayload",
+        "func": "msg.amqpMessage = JSON.parse(msg.payload);\n\nmsg.deviceId = msg.amqpMessage.device_id;\nmsg.rawPayload = msg.amqpMessage.body.content;\n\nmsg.payload = Buffer.from(msg.rawPayload).toString();\n\ntry {\n    msg.payload = JSON.parse(msg.payload);\n} catch (e) {\n    // oops, wasn't JSON - leave it a string\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 402,
+        "y": 112,
+        "wires": [
+            [
+                "dc08d7ac.6348c8"
+            ]
+        ]
+    },
+    {
+        "id": "dc08d7ac.6348c8",
+        "type": "switch",
+        "z": "d9a517aa.179758",
+        "name": "Filter relevant devices",
+        "property": "deviceId",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "regex",
+                "v": "xdk.+",
+                "vt": "str",
+                "case": false
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "outputs": 2,
+        "x": 226.5,
+        "y": 293,
+        "wires": [
+            [
+                "853db5fc.d63a2"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "6cc43cc4.5a1ad4",
+        "type": "comment",
+        "z": "d9a517aa.179758",
+        "name": "Hints on usage",
+        "info": "msg.deviceId: Hono device ID\nmsg.amqpMessage: Original AMQP message data\nmsg.payload: Decoded device payload",
+        "x": 400.5,
+        "y": 72,
+        "wires": []
+    },
+    {
+        "id": "43007dd9.c95b64",
+        "type": "comment",
+        "z": "d9a517aa.179758",
+        "name": "Do your processing here",
+        "info": "",
+        "x": 608.5,
+        "y": 250,
+        "wires": []
+    },
+    {
+        "id": "eca61264.49fc1",
+        "type": "amqp-endpoint",
+        "z": "",
+        "host": "hono.bosch-iot-suite.com",
+        "port": "15672",
+        "username": "YOUR_USERNAME",
+        "password": "YOUR_PASSWORD",
+        "name": ""
+    }
+]
