@@ -48,7 +48,81 @@ Further guidance can be found in the [Getting Started](https://docs.influxdata.c
 
 ## Digital Twins
 
-[todo] Documenation around Bosch IoT Things
+### What is [Bosch IoT Things](https://things.apps.bosch-iot-cloud.com/)?
+
+Bosch IoT Things enables applications, cloud services, and devices to manage the data of their IoT assets in a simple, convenient, robust, and secure way. Solutions can store and update the data, properties, and relationships of your domain's assets and get notified of all relevant changes.
+
+### Getting started with the HTTP API
+An IoT developer can create, read, update and delete Things via the Bosch IoT Things HTTP API. 
+
+To use the HTTP API you will need:
+
+ * The header for authenticating your solution: ``x-cr-api-token: {apiToken}``
+ * The header for authenticating the current user via Basic Auth: ``Authorization: Basic base64({username}:{password})``
+
+The root resource of the Bosch IoT Things HTTP API is located at ``https://things.apps.bosch-iot-cloud.com/cr/1``.
+All requests and responses are ``JSON`` based so please use ``application/json`` as the ``Content-Type`` for your 
+requests.
+
+#### Search things
+Let's see which Things your user is allowed to see. By default this request will not return more than 25 things.
+
+> GET /search/things
+
+You can further filter or limit the returned results, see the 
+[HTTP API documentation](https://things.apps.bosch-iot-cloud.com/documentation/rest/#) for more information.
+
+#### Retrieve a Thing
+Retrieve a single Thing by its Thing ID:
+
+> GET /things/{thingId}
+
+You can read only parts of a Thing by specifying the path inside the Thing via the URL path e.g. to read an 
+attribute ``location`` use the following path:
+
+> GET /things/{thingId}/attributes/location
+
+#### Modify a Thing
+
+You can either update the whole Thing at once (attention, this overwrites all data of a Thing) or only parts of it 
+e.g. its attributes or a single property value. 
+
+To update the ``location`` attribute of a Thing use the following request:
+> PUT /things/{thingId}/attributes/location
+
+Example of JSON request body:
+```json
+{
+  "longitude": -27.119444,
+  "latitude" : -109.354722
+}
+```
+#### Further operations
+
+For a complete list of available operations please refer to the 
+[HTTP API documentation](https://things.apps.bosch-iot-cloud.com/documentation/rest/#).
+
+In case you are familiar with [Postman](https://www.getpostman.com/) we also have prepared a 
+[Postman Collection](https://github.com/bsinno/iot-things-examples/tree/master/postman-collection)
+for you to quickly get started (tip: use the environment ``env_CRaaS-prod-environment.json`` to have the correct 
+endpoint configured automatically).
+
+### Java API
+
+If you prefer a Java based approach you can also use the 
+[Things Integration Client](https://cr.apps.bosch-iot-cloud.com/dokuwiki/doku.php?id=005_dev_guide:005_java_api:005_java_api) 
+to access your Things and to subscribe for changes that are made to your Things.
+To get started go to the 
+[Hello World Example](https://things.apps.bosch-iot-cloud.com/dokuwiki/doku.php?id=005_dev_guide:tutorial:000_hello_world)
+of using the Java Client.
+
+### Further information
+* Main entry point for 
+[Bosch IoT Things documentation](https://things.apps.bosch-iot-cloud.com/dokuwiki/doku.php?id=start)
+* Complete documentation of [Things HTTP API](https://cr.apps.bosch-iot-cloud.com/documentation/rest/#)
+* Documentation of the 
+[Things Integration Client](https://cr.apps.bosch-iot-cloud.com/dokuwiki/doku.php?id=005_dev_guide:005_java_api:005_java_api)
+* [Code examples](https://github.com/bsinno/iot-things-examples) of using the Things Integration Client (Java)
 
 ## Developer Console
 
