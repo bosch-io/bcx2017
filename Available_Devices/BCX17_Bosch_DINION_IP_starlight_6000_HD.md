@@ -41,7 +41,7 @@ can be configured directly inside the camera.
 
 ### Example telemetry data
 
-```json
+```JSON
 {
 	"topic": "bcx/dinion.044448965910133002/things/twin/commands/modify",
 	"path": "/features",
