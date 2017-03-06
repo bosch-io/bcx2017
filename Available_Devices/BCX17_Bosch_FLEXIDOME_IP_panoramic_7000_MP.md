@@ -27,6 +27,24 @@ can be configured directly inside the camera.
 
 ### Example telemetry data
 
+```javascript
+{
+	"topic": "bcx/flexidome.044448965910133002/things/twin/commands/modify",
+	"path": "/features",
+	"value": {
+		"event": {
+			"properties": {
+				"type": "object-seen"
+			}
+		},
+		"storage": {
+			"properties": {
+				"url": "ftp://bcx-workhorse.bosch-iot-suite.com/flexidome.044448965910133002/"
+			}
+		}
+	}
+}
+```
 
 ## Ideas for using this device
 
