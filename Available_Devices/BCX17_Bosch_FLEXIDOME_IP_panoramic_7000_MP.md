@@ -8,11 +8,11 @@ The Bosch FLEXIDOME IP panoramic 7000 MP is a nice fisheye surveillance camera t
 
 The FLEXIDOME IP panoramic cameras are identified through their IP address, printed on the of the device. The following devices are available:
 
-		URL				Serial number		MAC
-
-http://192.168.200.220 044739371723244074 00-07-5F-99-49-2A
-http://192.168.200.221 044739371723244053 00-07-5F-99-49-16
-http://192.168.200.222 044739371723244078 00-07-5F-99-49-2E
+| URL                    | Serial number      | MAC               |
+|------------------------|--------------------|-------------------|
+| http://192.168.200.220 | 044739371723244074 | 00-07-5F-99-49-2A |
+| http://192.168.200.221 | 044739371723244053 | 00-07-5F-99-49-16 |
+| http://192.168.200.222 | 044739371723244078 | 00-07-5F-99-49-2E |
 
 ## Device capabilities
 
