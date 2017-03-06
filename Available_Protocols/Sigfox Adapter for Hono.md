@@ -4,6 +4,13 @@ This adapter exposes an endpoint which can be called by the Sigfox adapter. In S
 
 The url of the adapter is http://hono.bosch-iot-suite.com:10050
 
+#### Exposed Endpoints
+(POST)	Uplink 			http://hono.bosch-iot-suite.com:10050/  
+(GET)	Adapter Status	http://hono.bosch-iot-suite.com:10050/status  
+(GET)	Last Known Error	http://hono.bosch-iot-suite.com:10050/status/err  
+(GET)	Last Device Call	http://hono.bosch-iot-suite.com:10050/status/bcx2017/[deviceId]  
+(POST)	Downlink			http://hono.bosch-iot-suite.com:10050/dl/bcx2017/[deviceId]
+
 ## Setting Up
 
 ### Pre-requisites
@@ -64,6 +71,25 @@ The endpoint will return the last packet frame sent by your device to the adapte
 
 /status		- General status and uptime information
 /status/err 	- Last reported/known error/exception encountered by the adapter
+
+## Packet Frame Format
+A typical incoming Sigfox payload would look something like this:
+
+```
+{
+	"time" : "1480717528",
+	"device" : "sigfox-device-1",
+	"duplicate" : "false",
+	"snr" : "18.53"",
+	"avgSnr" : "32.50",
+	"rssi" : "-123.00",
+	"station" : "0DF1",
+	"lat" : "49.0",
+	"lng" : "3.0",
+	"seqNumber” : "31",
+	"data" : "1234"
+}
+```
 
 ## Limitations
 
