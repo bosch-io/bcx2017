@@ -33,6 +33,6 @@ The XDK110 is a universal programmable sensor device that enables rapid prototyp
 
 ## Additional information
 
-Available with the XDK Workbench Version 2.0.0 onwards, the XDK Workbench ships with an additional feature called Firmware Over the Air (FOTA). FOTA is a method to update your firmware wirelessly, i.e. over Wi-Fi. To do so, please make sure that your bootloader is FOTA compatible by overwriting your current bootloader as described in chapter 3.6.2 (if necessary) and your current bootloader type is set to „FOTA Compatible“ in the XDK preferences.
+Available with the XDK Workbench Version 2.0.0 onwards, the XDK Workbench ships with an additional feature called Firmware Over the Air (FOTA). FOTA is a method to update your firmware wirelessly, i.e. over Wi-Fi. To do so, please make sure that your bootloader is FOTA compatible by overwriting your current bootloader as described in the [XDK General Information Guide] (https://xdk.bosch-connectivity.com/guides) and your current bootloader type is set to „FOTA Compatible“ in the XDK preferences.
 
 Detailed technical specifications can be found on the [product page](http://xdk.io). XDK API Documentation [API page](https://xdk.bosch-connectivity.com/xdk-api).
