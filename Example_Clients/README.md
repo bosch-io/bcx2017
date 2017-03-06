@@ -4,9 +4,9 @@ The following example clients are available - feel free to adapt them and build 
 
 ## Receive telemetry from Hono
 
-* [Node.js](Node.js/)
-* [Node-RED](Node-RED)
-* [Go](Golang)
+* [Node.js](Hono-Node.js/)
+* [Node-RED](Hono-Node-RED)
+* [Go](Hono-Golang)
 
 For other programming languages, you can use the [Apache QPid Proton library](http://qpid.apache.org/proton/)
 
