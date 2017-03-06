@@ -4,6 +4,10 @@ import java.awt.image.BufferedImage;
 import java.io.InputStream;
 import java.net.URL;
 
+/**
+ * CameraConnector handles the connection to the camera and download the pictures from camera
+ */
+
 public class CameraConnector extends Thread {
 
     private boolean isConnected = false;
@@ -16,7 +20,7 @@ public class CameraConnector extends Thread {
         while(isConnected)
         {
             try {
-                connect();
+                getPictureFromCamera();
             }
             catch (Exception ex)
             {
@@ -27,9 +31,9 @@ public class CameraConnector extends Thread {
 
     }
 
-    public void connect() {
+    public void getPictureFromCamera() {
 
-        String url = "http://" + UserInterface.DEFAULT_IP + "/snap.jpg";
+        String url = "http://" + UserInterface.cameraURL.getText() + "/snap.jpg";
 
         try {
             InputStream in = new URL(url).openStream();
@@ -44,8 +48,6 @@ public class CameraConnector extends Thread {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
     }
 }
 

@@ -15,6 +15,10 @@ import java.io.File;
 import java.net.URI;
 import java.nio.file.Files;
 
+/**
+ * MicrosoftCognitiveServiceRequests which holds the required method for Microsoft cognitive service
+ */
+
 public class MicrosoftCognitiveServiceRequests {
 
 
@@ -25,13 +29,9 @@ public class MicrosoftCognitiveServiceRequests {
         try {
             String cognitiveServiceResponse = this.SendEmotionRequest(picture, subsciptionKey);
 
-            // System.out.println(cognitiveServiceResponse);
-
             JSONParser parser = new JSONParser();
 
             JSONArray emotionfaceList = (JSONArray)parser.parse(cognitiveServiceResponse);
-
-            // System.out.println(emotionfaceList.size());
 
             if ((emotionfaceList != null)) {
                 if ((emotionfaceList.size() == 0)) {
@@ -60,7 +60,7 @@ public class MicrosoftCognitiveServiceRequests {
                         scores.contempt = (Double)emotionScores.get("contempt");
                         scores.fear = (Double)emotionScores.get("fear");
 
-                        UserInterface.resultsOfAnalysis.setText("Results: \r\n"
+                        UserInterface.resultsOfAnalysis.setText("Emotion results: \r\n"
                                 + String.format("%.2f",scores.happiness*100) + " % happiness\r\n"
                                 + String.format("%.2f",scores.sadness*100) + " % sadness\r\n"
                                 + String.format("%.2f",scores.neutral*100) + " % neutral\r\n"

@@ -1,3 +1,8 @@
+
+/**
+ * Main class which starts the GUI
+ */
+
 public class StartMicrosoftCognitiveServiceExample {
 
 

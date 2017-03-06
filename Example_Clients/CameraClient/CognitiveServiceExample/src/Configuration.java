@@ -1,12 +1,14 @@
 import java.io.*;
 
+/**
+ * Configuration class load the default camera IP, subscription key and temporary picture path from the cfg file
+ */
+
 public class Configuration {
 
     public static void ReadConfig(String filename) {
 
         try {
-
-
             //  Read every line in the file.
 
             BufferedReader br = new BufferedReader(new FileReader(filename));

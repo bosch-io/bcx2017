@@ -13,7 +13,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * Created by DaveKing on 19.02.2017.
+ * AnalyzeButtonListener reacts when the analyze button is clicked
  */
 public class AnalyzeButtonListener implements ActionListener {
 
@@ -22,7 +22,7 @@ public class AnalyzeButtonListener implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         try {
 
-            String url = "http://" + UserInterface.DEFAULT_IP + "/snap.jpg";
+            String url = "http://" + UserInterface.cameraURL.getText() + "/snap.jpg";
 
             InputStream in = new URL(url).openStream();
 

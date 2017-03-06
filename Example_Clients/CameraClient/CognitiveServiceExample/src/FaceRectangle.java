@@ -1,4 +1,6 @@
-
+/**
+ * FaceRectangle which holds the rectangle of the detected face
+ */
 
 public class FaceRectangle {
 

@@ -1,4 +1,7 @@
 
+/**
+ * Emotion score values delivered by Microsoft Cognitive Service
+ */
 
 public class Scores {
     public double anger;

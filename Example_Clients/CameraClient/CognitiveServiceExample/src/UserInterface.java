@@ -4,6 +4,9 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 
+/**
+ * UserInterface class defines the GUI of the CongnitveServiceExample
+ */
 
 public class UserInterface {
 
@@ -23,17 +26,13 @@ public class UserInterface {
 
     private static JButton connectButton;
 
-    public static JButton automaticButton;
-
-    public static boolean automaticActive = false;
+    public static JFormattedTextField eventField;
 
     public static JTextField cameraURL;
 
     private JFrame mainFrame = new JFrame();
 
     public static JTextField subsciptionKey;
-
-    public static JPanel cameoPanel;
 
     public static JLabel cameraShotImage;
 
@@ -42,7 +41,6 @@ public class UserInterface {
     public static JLabel cameraStreaming;
 
     public static JFormattedTextField resultsOfAnalysis;
-
 
     public UserInterface() {
         String ConfigFileName = "Resources\\MSCS.cfg";
@@ -61,14 +59,13 @@ public class UserInterface {
 
     public void InitializeGUIComponents() {
 
+        // GUI elements
+
         //
         //  URL Textbox
         //
         cameraURL = new JTextField();
         cameraURL.setText(DEFAULT_IP);
-        cameraURL.setSize(150, 20);
-        cameraURL.setFont(FONT);
-        cameraURL.setLocation(150, 0);
         cameraURL.setName("Camera URL Textbox");
 
         //
@@ -76,9 +73,6 @@ public class UserInterface {
         //
         JLabel urlLabel = new JLabel();
         urlLabel.setText("Camera IP : ");
-        urlLabel.setSize(150, 20);
-        urlLabel.setFont(FONT);
-        urlLabel.setLocation(0, 0);
         urlLabel.setName("Camera URL Label");
 
         //
@@ -86,18 +80,12 @@ public class UserInterface {
         //
         JLabel subsciptionKeyLabel = new JLabel();
         subsciptionKeyLabel.setText("Subscribtion Key : ");
-        subsciptionKeyLabel.setSize(200, 20);
-        subsciptionKeyLabel.setFont(FONT);
-        subsciptionKeyLabel.setLocation(1250, 0);
         subsciptionKeyLabel.setName("Subscribtion Key Label");
         //
         //  Subscribtion Key Textbox
         //
         subsciptionKey = new JTextField();
         subsciptionKey.setText(SUBSCRIPTION_KEY_FOR_EMOTION);
-        subsciptionKey.setSize(400, 20);
-        subsciptionKey.setFont(FONT);
-        subsciptionKey.setLocation(1450, 0);
         subsciptionKey.setName("Subscribtion Key Textbox");
 
         //
@@ -107,7 +95,6 @@ public class UserInterface {
         //  Construct an image object from a file in the local directory.
         //  ... This file must exist in the solution.
         String boschSmartEdgeImageFileName = "Resources\\SmartEdgeDevices.png";
-
         BufferedImage boschSmartEdgeImage = null;
 
         try {
@@ -142,10 +129,7 @@ public class UserInterface {
         //  Connect Button
         //
         connectButton = new JButton();
-        connectButton.setLocation(310, 0);
-        connectButton.setSize(120, 30);
         connectButton.setText("Connect");
-        connectButton.setFont(FONT);
         ConnectButtonListener connectButtonListener = new ConnectButtonListener();
         connectButton.addActionListener(connectButtonListener);
 
@@ -153,47 +137,30 @@ public class UserInterface {
         //  Analyze Button
         //
         analyzeButton = new JButton();
-        analyzeButton.setLocation(1600, 30);
-        analyzeButton.setSize(250, 100);
         analyzeButton.setText("Get face and analyze it");
-        analyzeButton.setFont(FONT);
-        analyzeButton.setEnabled(true);
+        analyzeButton.setEnabled(false);
         AnalyzeButtonListener analyzeButtonListener = new AnalyzeButtonListener();
         analyzeButton.addActionListener(analyzeButtonListener);
 
         //
-        //  Automatic Button
+        //  Event Textfield Button
         //
-        automaticButton = new JButton();
-        automaticButton.setLocation(1600, 400);
-        automaticButton.setSize(250, 100);
-        automaticButton.setText("Automatic disabled");
-        automaticButton.setFont(FONT);
-        automaticButton.setEnabled(false);
-        AutomaticButtonListener automaticButtonListener = new AutomaticButtonListener();
-        automaticButton.addActionListener(automaticButtonListener);
+        eventField = new JFormattedTextField("");
+        eventField.setColumns(5);
 
         //
         //  Result label
         //
         resultsOfAnalysis = new JFormattedTextField("");
-        resultsOfAnalysis.setLocation(1600, 140);
-        resultsOfAnalysis.setSize(300, 300);
-        resultsOfAnalysis.setText("Results: \r\n" + (" x % " + ("happiness\r\n" + (" x % " + ("sadness\r\n" + (" x % " + ("neutral\r\n" + (" x % " + ("surprise\r\n" + (" x % " + ("anger\r\n" + (" x % " + ("contempt\r\n" + (" x % " + "fear\r\n\r\n"))))))))))))));
+        resultsOfAnalysis.setText("Emotion results: \r\n" + (" x % " + ("happiness\r\n" + (" x % " + ("sadness\r\n" + (" x % " + ("neutral\r\n" + (" x % " + ("surprise\r\n" + (" x % " + ("anger\r\n" + (" x % " + ("contempt\r\n" + (" x % " + "fear\r\n\r\n"))))))))))))));
         resultsOfAnalysis.setFont(FONT);
 
         //
         //  MainWindow
         //
-
-        GridBagLayout gridbag = new GridBagLayout();
-        GridBagConstraints gridBagConstraints = new GridBagConstraints();
-
         mainFrame.setLayout(new GridLayout(4, 3));
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainFrame.setSize(1200, 800);
-
-
 
         mainFrame.add(urlLabel);
         mainFrame.add(boschSmartEdgeDevice);
@@ -207,7 +174,7 @@ public class UserInterface {
         mainFrame.add(cameraStreaming);
         mainFrame.add(faceImage);
 
-        mainFrame.add(automaticButton);
+        mainFrame.add(eventField);
         mainFrame.add(analyzeButton);
         mainFrame.add(resultsOfAnalysis);
 
@@ -221,27 +188,35 @@ public class UserInterface {
 
     }
 
-
-
-
+    // cropImage extract from the given rectangle the subimage from the given image
     public static BufferedImage cropImage(BufferedImage bufferedImage, Rectangle rectangle) {
-        return bufferedImage.getSubimage(rectangle.x, rectangle.y, rectangle.width, rectangle.height);
+        if (rectangle.height == 0 || rectangle.width == 0 )
+        {
+            return bufferedImage;
+        }
+        else {
+            return bufferedImage.getSubimage(rectangle.x, rectangle.y, rectangle.width, rectangle.height);
+        }
     }
 
+    // gives the status of the connection to the camera
     public static boolean isConnected() {
         return isConnected;
     }
 
+    // called when the connection status change to update all buttons and the status
     public static void changeConnectionStatus()
     {
         if(isConnected)
         {
             isConnected = false;
             connectButton.setText("Connect");
+            analyzeButton.setEnabled(false);
         }
         else {
             isConnected = true;
             connectButton.setText("Disconnect");
+            analyzeButton.setEnabled(true);
         }
     }
 
