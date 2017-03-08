@@ -4,15 +4,14 @@ The PRC 7000 is the latest generation of resistance welding control systems. It 
 from the European market leader: a highly efficient, reliable control system. With intuitive operation, state-of-the-art hardware and 
 adaptive control – for ultra-fast commissioning, energy-saving.
 
-<img src="images/PRC7000.png " width="255">
-
+![Bosch PRC7000](images/PRC7000.png "Bosch PRC7000")
 ## Available devices
 
 The PRC 7000 are identified through names, printed on the of the device. 
 The following devices are available:
 
-|         name            |          MAC        |   IP   |
-|-----------------------------------------------|--------|
+|         Name            |          MAC        |   IP   |
+|-------------------------|---------------------|--------|
 |  PRC006034AEDAC4  	  |  00:60:34:AE:DA:C4  |  DHCP  |
 |  PRC006034AEEF5D  	  |  00:60:34:AE:EF:5D  |  DHCP  |
 |  PRC006034AEDAC2        |  00:60:34:AE:DA:C2  |  DHCP  |
@@ -24,6 +23,8 @@ The following devices are available:
 |  PRC006034AF1BD5        |  00:60:34:AF:1B:D5  |  DHCP  |
 |  PRC006034AF0673        |  00:60:34:AF:06:73  |  DHCP  |
 
+You will find the IP adress over the display menu. 
+
 
 ## Device capabilities
 
@@ -34,7 +35,7 @@ On top of welding, the PRC 7000 can also:
 
 
 ## Example of the weld data
-'''JSON
+```JSON
 {
   "topic": "com.bosch.si.myapp/MyPRC7000-PRC1232132133123/things/twin/commands/modify",
   "path": "/features/welding/properties/status",
@@ -63,7 +64,7 @@ On top of welding, the PRC 7000 can also:
     "spotName": "1_0"
   }
 }
-'''
+```
 
 ## Ideas for optimizing this device or the production performance
 - Online optimization of the current level to achieve a lower expulsion rate and still keep an acceptable quality (quality estimation index)
