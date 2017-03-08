@@ -1,20 +1,31 @@
 # Actility LoRaWAN Adapter for Hono
 
-This adapter exposes an endpoint which can be called by the Actility Thingpark backend. 
+This adapter exposes an endpoint which can be called by the Actility ThingPark Backend. 
 
-The url of the adapter is http://hono.bosch-iot-suite.com:10060
+#### Endpoints
 
-#### Exposed Endpoints
-(POST)	Telemetry 		http://hono.bosch-iot-suite.com:10060/  
-(GET)	Adapter Status	http://hono.bosch-iot-suite.com:10060/status  
-(GET)	Last Known Error	http://hono.bosch-iot-suite.com:10060/status/err  
-(GET)	Last Device Call	http://hono.bosch-iot-suite.com:10060/status/bcx2017/[deviceId]  
+##### Performing an Uplink from Thingpark
+(POST)	 http://hono.bosch-iot-suite.com:10060/bcx?LrnDevEui=...etc..
+
+##### Status and Stats of the Actility Adapter
+(GET)	http://hono.bosch-iot-suite.com:10060/status
+
+##### Last Incoming Payload for Device
+(GET)	http://hono.bosch-iot-suite.com:10060/status/bcx/[deviceId]/incoming
+
+##### Last Twin Payload for Device
+(GET)	http://hono.bosch-iot-suite.com:10060/status/bcx/[deviceId]/twin
 
 ## Setting Up
 
 ### Pre-requisites
 
-1. You'll need to register your device id on hono via Hono's registration endpoint. This would be typically the Device's EUI.
+1. You'll need to register your device id on hono via Hono's registration endpoint
+
+2. You can do this via Hono's REST Adapter endpoint for Registration. 
+```curl -X POST -i -d 'device_id= lorawan.(deviceEui)' http://hono.bosch-iot-suite:8080/registration/DEFAULT_TENANT```)
+
+3. Devices should have a prefix of "lorawan."
 
 ### Configuring the Actility Backend
 
@@ -26,26 +37,15 @@ The url of the adapter is http://hono.bosch-iot-suite.com:10060
 
 If you have configured your device's Callback on the Actility Backend, the call to the adapter should automatically be made and you need not do anything further.
 
-You can then just subscribe to any notifications to your device via Hono.
+You can then just subscribe to any notifications to your device via Hono or IoT Things.
 
 The adapter supports either application/json or application/xml format.
 
-### Debugging and Errors
+**NOTE: The Device ID for devices via this adapter will be appended with "lorawan."**  
+**Example: lorawan.mydevice**  
 
-#### Last Device Status
-In order to debug/observe the last call made by your device to the adapter, you can call the following endpoint: /status/bcx2017/[deviceid]
-
-The endpoint will return the last packet frame sent by your device to the adapter via the Sigfox Backend.
-
-#### Other Debugging/Status Endpoints
-
-/status		- General status and uptime information
-/status/err 	- Last reported/known error/exception encountered by the adapter
-
-## Packet Frame Format
-A typical incoming LoRaWAN payload would look something like this:
-
-### XML
+## Payload Format
+### Actility ThingPark XML
 ```
 <?xml version="1.0" encoding="UTF-8"?>
 <DevEUI_uplink xmlns="http://uri.actility.com/lora">
@@ -102,7 +102,7 @@ A typical incoming LoRaWAN payload would look something like this:
 </DevEUI_uplink>
 ```
 
-### JSON
+### Actility ThingPark JSON
 ```
 {
    "DevEUI_uplink":{
@@ -156,7 +156,86 @@ A typical incoming LoRaWAN payload would look something like this:
 }
 ```
 
+### IoT Things Twin Payload
+The Bosch IoT Things Payload would look like the following. 
 
+Note the "Data" Feature which contains the raw Actility ThingPark payload encoded in Base64.
+
+```
+{
+  "topic" : "/bcx/lorawan.null/things/twin/commands/modify",
+  "path" : "/features",
+  "value" : {
+    "features" : {
+      "Packet" : {
+        "properties" : {
+          "InstantPER" : "0.02",
+          "Late" : "0",
+          "FPort" : "2",
+          "Time" : "2015-07-09T16:06:38.49+02:00",
+          "MeanPER" : "0.02",
+          "UplinkCounter" : "7011",
+          "DownlinkCounter" : "11"
+        }
+      },
+      "Device" : {
+        "properties" : {
+          "ADRBit" : "1",
+          "SubBand" : "G1",
+          "Channel" : "LC2",
+          "SpreadFactor" : "7",
+          "EUI" : "000000000F1D8693",
+          "ACKBit" : "1",
+          "Addr" : "0405F519"
+        }
+      },
+      "Location" : {
+        "properties" : {
+          "Radius" : null,
+          "VerticalRadius" : null,
+          "GeoTimestamp" : null,
+          "Latitude" : null,
+          "Longitude" : null,
+          "Altitude" : null
+        }
+      },
+      "LRR" : {
+        "properties" : {
+          "RSSI" : "-60.000000",
+          "SNR" : "9.750000",
+          "LRRCount" : "2",
+          "Latitude" : "48.874931",
+          "Id" : "08040059",
+          "Longitude" : "2.333673"
+        }
+      },
+      "LRC" : {
+        "properties" : {
+          "ID" : "00000065"
+        }
+      },
+      "Data" : {
+        "properties" : {
+          "MIC" : "38e7a3b9",
+          "Payload" : "0027bd00"
+        }
+      },
+      "Customer" : {
+        "properties" : {
+          "Data" : "...",
+          "ID" : "100000507"
+        }
+      },
+      "Uplink" : {
+        "properties" : {
+          "content-type" : "application/json",
+          "value" : "ewogICAiRGV2RVVJX3VwbGluayI6ewogICAgICAiLXhtbG5zIjoiaHR0cDovL3VyaS5hY3RpbGl0eS5jb20vbG9yYSIsCiAgICAgICJUaW1lIjoiMjAxNS0wNy0wOVQxNjowNjozOC40OSswMjowMCIsCiAgICAgICJEZXZFVUkiOiIwMDAwMDAwMDBGMUQ4NjkzIiwKICAgICAgIkZQb3J0IjoiMiIsCiAgICAgICJGQ250VXAiOiI3MDExIiwKICAgICAgIkFEUmJpdCI6IjEiLAogICAgICAiQUNLYml0IjoiMSIsCiAgICAgICJNVHlwZSI6IjQiLAogICAgICAiRkNudERuIjoiMTEiLAogICAgICAicGF5bG9hZF9oZXgiOiIwMDI3YmQwMCIsCiAgICAgICJtaWNfaGV4IjoiMzhlN2EzYjkiLAogICAgICAiTHJjaWQiOiIwMDAwMDA2NSIsCiAgICAgICJMcnJSU1NJIjoiLTYwLjAwMDAwMCIsCiAgICAgICJMcnJTTlIiOiI5Ljc1MDAwMCIsCiAgICAgICJTcEZhY3QiOiI3IiwKICAgICAgIlN1YkJhbmQiOiJHMSIsCiAgICAgICJDaGFubmVsIjoiTEMyIiwKICAgICAgIkRldkxyckNudCI6IjIiLAogICAgICAiTHJyaWQiOiIwODA0MDA1OSIsCiAgICAgICJMYXRlIjoiMCIsCiAgICAgICJMcnJMQVQiOiI0OC44NzQ5MzEiLAogICAgICAiTHJyTE9OIjoiMi4zMzM2NzMiLAogICAgICAiTHJycyI6ewogICAgICAgICAiTHJyIjpbCiAgICAgICAgICAgIHsKICAgICAgICAgICAgICAgIkxycmlkIjoiMDgwNDAwNTkiLAogICAgICAgICAgICAgICAiTHJyUlNTSSI6Ii02MC4wMDAwMDAiLAogICAgICAgICAgICAgICAiTHJyU05SIjoiOS43NTAwMDAiLAogICAgICAgICAgICAgICAiTHJyRVNQIjoiLTU5LjAwMDAwMCIKICAgICAgICAgICAgfSwKICAgICAgICAgICAgewogICAgICAgICAgICAgICAiTHJyaWQiOiIzM2QxM2E0MSIsCiAgICAgICAgICAgICAgICJMcnJSU1NJIjoiLTczLjAwMDAwMCIsCiAgICAgICAgICAgICAgICJMcnJTTlIiOiI5Ljc1MDAwMCIsCiAgICAgICAgICAgICAgICJMcnJFU1AiOiItNzIuMDAwMDAwIgogICAgICAgICAgICB9CiAgICAgICAgIF0KICAgICAgfSwKICAgICAgIkN1c3RvbWVySUQiOiIxMDAwMDA1MDciLAogICAgICAiQ3VzdG9tZXJEYXRhIjoiLi4uIiwKICAgICAgIk1vZGVsQ2ZnIjoiMCIsCiAgICAgICJJbnN0YW50UEVSIjoiMC4wMiIsCiAgICAgICJNZWFuUEVSIjoiMC4wMiIsCiAgICAgICJEZXZBZGRyIjoiMDQwNUY1MTkiLAogICAgICAiVXBsaW5rREMiOiIwLjAwMSIsCiAgICAgICJVcGxpbmtEQ1N1YkJhbmQiOiIwLjAwOSIKICAgfQp9"
+        }
+      }
+    }
+  }
+}
+```
 ## Limitations
 
 Since Hono currently only support uplink in the form of telemetry and events, 
