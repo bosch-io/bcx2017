@@ -32,7 +32,7 @@ or the command line:
 # in admin console: select database "hono-telemetry"
 SELECT * from xdk.7cec79d33382 ORDER BY time desc LIMIT 10
 # from command line
-curl -G 'http://localhost:8086/query?pretty=true' --data-urlencode "db=hono_telemetry" --data-urlencode "q=SELECT \"*\" FROM \"xdk.7cec79d33382\" ORDER BY time desc LIMIT 10"
+curl -G 'http://bcx-workhorse.bosch-si.com:8086/query?pretty=true&u=USERNAME&p=PASSWORD' --data-urlencode "db=hono_telemetry" --data-urlencode "q=SELECT \"*\" FROM \"xdk.7cec79d33382\" ORDER BY time desc LIMIT 10"
 ````
 
 #### Read out latest entry from all Nexo nutrunners
@@ -41,10 +41,12 @@ curl -G 'http://localhost:8086/query?pretty=true' --data-urlencode "db=hono_tele
 # in admin console
 select * from /nexo\..*/ order by time desc limit 1
 # from command line
-curl -G 'http://localhost:8086/query?pretty=true' --data-urlencode "db=hono_telemetry" --data-urlencode "q=SELECT \"*\" FROM \"/nexo\\..*/\" ORDER BY time desc LIMIT 1"
+curl -G 'http://bcx-workhorse.bosch-si.com:8086/query?pretty=true&u=USERNAME&p=PASSWORD' --data-urlencode "db=hono_telemetry" --data-urlencode "q=SELECT \"*\" FROM \"/nexo\\..*/\" ORDER BY time desc LIMIT 1"
 ````
 
-Further guidance can be found in the [Getting Started](https://docs.influxdata.com/influxdb/v1.2/introduction/getting_started/) section of the InfluxDB documentation.
+Further guidance can be found in the [Getting Started](https://docs.influxdata.com/influxdb/v1.2/introduction/getting_started/) section of the InfluxDB documentation and on the [InfluxDB API page](https://docs.influxdata.com/influxdb/v1.2/tools/api/) (see "query").
+
+
 
 ## Digital Twins
 
