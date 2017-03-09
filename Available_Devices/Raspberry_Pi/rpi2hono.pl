@@ -43,11 +43,6 @@ sub gather_data {
     $data{processes_running} = $stat{procs_running} + 0.0;
     $data{processes_blocked} = $stat{procs_blocked} + 0.0;
 
-#    foreach my $cpu (grep /^cpu(\d*)/, sort keys %stat) {
-#        my $id = $1 || 0;
-#        $data{cpu}->[$id]->{usage} = $stat{"cpu$cpu"}->{usage};
-#    }
-
     foreach my $cpu (grep /^cpu\d*/, sort keys %stat) {
         if ($cpu =~ /(\d+)/) {
             $data{cpu_usage_individual}->[$1] = $stat{$cpu}->{usage};
@@ -62,8 +57,8 @@ sub publish {
     my ($data) = @_;
 
     my $things = {
-        topic => "bcx/rpi" . $device_id . "/things/twin/commands/modify",
-        path => "features",
+        topic => "bcx/$device_id/things/twin/commands/modify",
+        path => "/features",
         value => {
             cpu => {
                 properties => {
@@ -102,7 +97,7 @@ sub publish {
 #    print "$nice\n";
 
     my $response = $ua->put($hono_url, "Content-Type" => "application/json", "Content" => \$output);
-    print "[PUT] " . $response->status_line . "\n";
+    print scalar localtime . "[PUT] " . $response->status_line . "\n";
 }
 
 
