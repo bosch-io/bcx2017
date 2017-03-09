@@ -7,6 +7,7 @@ The following example clients are available - feel free to adapt them and build 
 * [Node.js](Hono-Node.js/)
 * [Node-RED](Hono-Node-RED)
 * [Go](Hono-Golang)
+* [Java](https://www.eclipse.org/hono/user-guide/java_client_consumer/)
 
 For other programming languages, you can use the [Apache QPid Proton library](http://qpid.apache.org/proton/)
 
