@@ -26,11 +26,27 @@ The Eclipse Hono website has further information on the [Telemetry API](https://
 
 # Retrieving Historical Data
 
-All telemetry data sent in from devices is also fed into an istance of the open source [InfluxDB](https://github.com/influxdata/influxdb) *Time Servies Database*.
+All telemetry data sent in from devices is also fed into an istance of the open source [InfluxDB](https://github.com/influxdata/influxdb) *Time Series Database*.
  
 Credentials for accessing the InfluxDB can be found on our passwords sheet.
 
 Telemetry is fed into the `hono-telemetry` database, events are fed into the `hono-events` database.
+
+If you want to just quickly retrieve historical data without getting too much into InfluxDB, use these simple webservices we created for you:
+
+```
+# list all devices with available telemetry data   http://bcx-workhorse.bosch-iot-suite.com/telemetry
+# list all devices with available event data
+http://bcx-workhorse.bosch-iot-suite.com/events      
+
+# Get last ten telemetry data sets from device rrc.655997720 (one of our thermostats)
+http://bcx-workhorse.bosch-iot-suite.com/telemetry?deviceId=rrc.655997720&limit=10
+# Get last ten events from device esp8266.60019400998b
+http://bcx-workhorse.bosch-iot-suite.com/events?deviceId=esp8266.60019400998b&limit=10
+
+```
+
+
 
 You can use the admin console at http://bcx-workhorse.bosch-si.com:8083/ to try out your queries using the web UI
 or run them from the command line using `curl`. The following sections provide some examples you can use as a starting point for your own experiments.
