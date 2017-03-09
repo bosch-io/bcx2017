@@ -14,5 +14,5 @@ The following devices are pre-connected and deliver their telemetry data into th
 - NetAtmo - **- Missing documentation -**
 
 
-- [Raspberry Pi](Raspberry_Pi/) - Prototyping platform **- Missing documentation -**
-- [ESP8266](esp8266/) - Arduino-like prototyping platform - but with Wifi!
+- [Raspberry Pi](Raspberry_Pi/) - Prototyping platform 
+- [ESP8266](esp8266/) - Arduino-like prototyping platform - but with Wifi! **- Missing documentation -**
