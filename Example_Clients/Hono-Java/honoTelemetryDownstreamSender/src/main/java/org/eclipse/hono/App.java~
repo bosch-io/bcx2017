@@ -1,0 +1,157 @@
+package org.eclipse.hono;
+
+import io.vertx.core.Context;
+import io.vertx.core.Future;
+import io.vertx.core.Vertx;
+import io.vertx.proton.ProtonClientOptions;
+import org.eclipse.hono.client.HonoClient;
+import org.eclipse.hono.client.MessageSender;
+import org.eclipse.hono.connection.ConnectionFactoryImpl;
+import org.springframework.expression.spel.ast.FunctionReference;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.CountDownLatch;
+import java.util.stream.IntStream;
+
+
+public class App {
+    //    public static final String HONO_HOST = "localhost";
+    public static final String HONO_HOST = "localhost";
+    public static final short HONO_PORT = 5672;
+
+    public static final String TENANT_ID = "DEFAULT_TENANT";
+    public static final String DEVICE_ID = "4722";
+
+    public static final int COUNT = 5;
+
+    private final Vertx vertx = Vertx.vertx();
+    private final HonoClient honoClient;
+
+    private final CountDownLatch latch;
+
+    public App() {
+        honoClient = new HonoClient(vertx,
+                ConnectionFactoryImpl.ConnectionFactoryBuilder.newBuilder()
+                        .vertx(vertx)
+                        .host(HONO_HOST)
+                        .port(HONO_PORT)
+                        .user("hono-client")
+                        .password("secret")
+                        .trustStorePath("certs/trusted-certs.pem")
+                        .disableHostnameVerification()
+                        .build());
+        latch = new CountDownLatch(1);
+    }
+
+    public static void main(String[] args) throws Exception {
+        System.out.println("Starting downstream sender...");
+        App app = new App();
+        app.sendTelemetryData();
+        System.out.println("Finishing downstream sender.");
+    }
+
+
+
+
+        private void sendTelemetryData() throws Exception {
+        final Future<MessageSender> senderFuture = Future.future();
+
+        senderFuture.setHandler(result -> {
+            if (!result.succeeded()) {
+                System.err.println("honoClient could not create telemetry sender : " + result.cause().getMessage());
+            }
+            latch.countDown();
+        });
+
+        final Future<HonoClient> connectionTracker = Future.future();
+
+        honoClient.connect(new ProtonClientOptions(), connectionTracker.completer());
+
+        connectionTracker.compose(honoClient -> {
+                    honoClient.getOrCreateTelemetrySender(TENANT_ID, senderFuture.completer());
+                },
+                senderFuture);
+
+        latch.await();
+
+        if (senderFuture.succeeded()) {
+            MessageSender ms = senderFuture.result();
+
+            IntStream.range(0, COUNT).forEach(value -> {
+                sendSingleMessage(ms, value);
+            });
+        }
+
+        vertx.close();
+    }
+    
+    private void sendSingleMessage(MessageSender ms, int value) {
+        CountDownLatch messageSenderLatch = new CountDownLatch(1);
+        System.out.println("Sending message... #" + value);
+
+        final Map<String, Object> properties = new HashMap<>();
+        properties.put("my_prop_string", "I'm a string");
+        properties.put("my_prop_int", 10);
+
+        ms.send(DEVICE_ID, properties, "myMessage" + value, "text/plain",
+                v -> {
+                    messageSenderLatch.countDown();
+                });
+        try {
+            messageSenderLatch.await();
+        } catch (InterruptedException e) {
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+//    private void sendTelemetryData() throws Exception {
+//        final Future<MessageSender> senderFuture = Future.future();
+//
+//        senderFuture.setHandler(result -> {
+//            if (!result.succeeded()) {
+//                System.err.println("honoClient could not create telemetry sender : " + result.cause().getMessage());
+//            }
+//            latch.countDown();
+//        });
+//
+//        final Future<HonoClient> connectionTracker = Future.future();
+//
+//        honoClient.connect(new ProtonClientOptions().setSsl(false), connectionTracker.completer());
+//
+//        connectionTracker.compose(honoClient -> {
+//            Future<MessageSender> senderTracker = Future.future();
+//            honoClient.getOrCreateTelemetrySender(TENANT_ID, senderTracker.completer());
+//            return senderTracker;
+//        }).compose(ms -> {
+//
+//                    IntStream.range(0, COUNT).forEach(value -> {
+//                        sendSingleMessage(ms, value);
+//                    });
+//                }
+//                ,
+//                senderFuture);
+//
+//        latch.await();
+//
+////        if (senderFuture.succeeded()) {
+////            MessageSender ms = senderFuture.result();
+////
+////            IntStream.range(0, COUNT).forEach(value -> {
+////                sendSingleMessage(ms, value);
+////            });
+////        }
+//
+//        vertx.close();
+//    }
+}
