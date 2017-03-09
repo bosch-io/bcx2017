@@ -142,7 +142,7 @@ of using the Java Client.
 
 # Connecting your own devices
 
-See [Example_Devices](Example_Devices/).
+If you want to connect one of your own devices to this backend, please approach one of the hack coaches.
 
 
 [BCX Website](http://bcw.bosch-si.com/berlin/bcw-hackathon/) 
