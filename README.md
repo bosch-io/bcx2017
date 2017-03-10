@@ -92,8 +92,10 @@ An IoT developer can create, read, update and delete Things via the Bosch IoT Th
 
 To use the HTTP API you will need:
 
- * The header for authenticating your solution: ``x-cr-api-token: {apiToken}``
- * The header for authenticating the current user via Basic Auth: ``Authorization: Basic base64({username}:{password})``
+ * The header for authenticating your solution: ``x-cr-api-token: 70440375adbe4687bf5ebe4bffad61c5``
+ * The credentials for authenticating the current user: 
+   * Via Basic Auth header (Base64 encoded): ``Authorization: Basic YmN4XGJjeDIwMTc6RGV2aWNlSHViQEJDWDIwMTc=``
+   * Or plain username ``bcx\bcx2017`` and password ``DeviceHub@BCX2017``
 
 The root resource of the Bosch IoT Things HTTP API is located at ``https://things.apps.bosch-iot-cloud.com/cr/1``.
 All requests and responses are ``JSON``-based so please use ``application/json`` as the ``Content-Type`` for your 
