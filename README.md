@@ -159,11 +159,12 @@ of using the Java Client.
 [Things Integration Client](https://cr.apps.bosch-iot-cloud.com/dokuwiki/doku.php?id=005_dev_guide:005_java_api:005_java_api)
 * [Code examples](https://github.com/bsinno/iot-things-examples) of using the Things Integration Client (Java)
 
-# That was a lot of APIs – is there anything like a graphical dashboard…?
+# Getting started with the Developer Console
 
-We're glad you asked. Cue the [Bosch IoT Developer Console](http://console.bosch-iot-suite.com)
-
-[to do] Documentation around Developer Console
+* [Register a new device](Documentation/DevConsole/register_new.md)
+* [Visualize device data](Documentation/DevConsole/visualize_data.md)
+* [Lookup Hono payload format](Documentation/DevConsole/send_telemetry_data.md)
+* [Create a new thing type](Documentation/DevConsole/create_thingtype.md)
 
 # What else do I need to get started?
 
