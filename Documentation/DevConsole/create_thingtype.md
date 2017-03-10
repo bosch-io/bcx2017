@@ -31,7 +31,7 @@ _Example_:
 
 _Example_:
 
-![Share](images/ShareThingType.png) 
+![Share](images/ShareThingType.PNG) 
 
 **Great!** By having published your model, the Bosch IoT Suite just learnt the semantics of your device. You can now proceed to register a specific device for that thing type.
 

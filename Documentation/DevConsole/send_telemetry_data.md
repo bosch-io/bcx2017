@@ -15,7 +15,7 @@ You have successfully registered your device in the Bosch IoT Suite.
 
 _Example_:
 
-![Sample Payload](images/SendPayloadSample.png)
+![Sample Payload](images/SendPayloadSample.PNG)
 
 - Implement your device client according to the given sample JSON payload
 - Verify the incoming device message by switching to the tab _Feature_.
