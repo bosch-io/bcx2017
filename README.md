@@ -161,10 +161,12 @@ of using the Java Client.
 
 # Getting started with the Developer Console
 
+The [Developer Console](https://console.bosch-iot-suite.com) lets you easily interact with the Bosch IoT Suite services in order to connect a device and build IoT applications. Click on the sub-topics to find out more: 
+
 * [Register a new device](Documentation/DevConsole/register_new.md)
-* [Visualize device data](Documentation/DevConsole/visualize_data.md)
-* [Lookup Hono payload format](Documentation/DevConsole/send_telemetry_data.md)
-* [Create a new thing type](Documentation/DevConsole/create_thingtype.md)
+* [Send device payload to Bosch IoT Things via Hono](Documentation/DevConsole/send_telemetry_data.md)
+* [Visualize device payload](Documentation/DevConsole/visualize_data.md)
+* [Describe a device with thing types](Documentation/DevConsole/create_thingtype.md)
 
 # What else do I need to get started?
 
