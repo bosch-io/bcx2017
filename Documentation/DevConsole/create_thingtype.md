@@ -14,9 +14,9 @@ A thing type basically describes the characteristics and functionality of a devi
 - Restart your Eclipse
 - Under Eclipse Preferences -> Vorto -> Information Model Repository, make the following changes: 
 	
-	URL: http://thingtype.bosch-iot-suite.com
-	User: [your username]
-	Password: [your password]
+		URL: http://thingtype.bosch-iot-suite.com
+		User: [your username]
+		Password: [your password]
 
 - Switch to the Vorto Perspective
 - Create a new Vorto Project by selection the + icon
@@ -27,11 +27,13 @@ _Example_:
 
 ![Create](images/CreateThingType.png)
  
-- When you finished describing your device, _right-click_ on the Information Model and choose _Share_ in order to publish it to the Model Repository 
+- When you finished describing your device, _right-click_ on the Information Model and choose _Share_ in order to publish it to the Thing Type Repository 
 
 _Example_:
 
 ![Share](images/ShareThingType.png) 
+
+**Great!** By having published your model, the Bosch IoT Suite just learnt the semantics of your device. You can now proceed to register a specific device for that thing type.
 
 ## What's next ? 
 
