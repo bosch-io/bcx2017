@@ -1,3 +1,8 @@
+![Available in Eclipse Hono](images/shields/Eclipse_Hono-available.png)
+![Available in Bosch IoT Things](images/shields/Bosch_IoT_Things-available.png)
+![Available in Bosch IoT Developer Console](images/shields/Bosch_IoT_Developer_Console-available.png)
+![You cannot work directly on this device](images/shields/Hacking_on_device-not_available.png)
+
 # Bosch GLM 100C 
 
 The Bosch GLM 100 C laser measure combines the precision of laser measures with the convenience of Bluetooth® wireless technology. This innovative product allows users to make accurate measurements that are instantly transferred to smart devices via the free Bosch Measuring Master mobile app. Featuring an extended measuring distance, best-in-class memory storage and angle measurement in two axis.
