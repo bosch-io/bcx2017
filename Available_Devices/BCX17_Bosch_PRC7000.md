@@ -1,3 +1,8 @@
+![Available in Eclipse Hono](images/shields/Eclipse_Hono-available-green.svg)
+![Available in Bosch IoT Things](images/shields/Bosch_IoT_Things-available-green.svg)
+![Available in Bosch IoT Developer Console](images/shields/Bosch_IoT_Developer_Console-available-green.svg)
+![You can work directly on this device](images/shields/Hacking_on_device-available-green.svg)
+
 # Bosch Rexroth PRC 7000 
 
 The PRC 7000 is the latest generation of resistance welding control systems. It delivers what you are entitled to expect 

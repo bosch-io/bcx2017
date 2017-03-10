@@ -1,3 +1,8 @@
+![Available in Eclipse Hono](images/shields/Eclipse_Hono-available-green.svg)
+![Available in Bosch IoT Things](images/shields/Bosch_IoT_Things-available-green.svg)
+![Not available in Bosch IoT Developer Console](images/shields/Bosch_IoT_Developer_Console-not_available-red.svg)
+![You can work directly on this device](images/shields/Hacking_on_device-available-green.svg)
+
 # Bosch FLEXIDOME IP panoramic 7000 MP
 
 The Bosch FLEXIDOME IP panoramic 7000 MP is a nice fisheye surveillance camera that can be used to detect autonomous scenarios. This camera has a 360° view which allows the viewer the full overview in each angle of the office room and this in Full HD quality (1080p).

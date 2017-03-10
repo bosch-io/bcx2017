@@ -1,6 +1,11 @@
+![Available in Eclipse Hono](images/shields/Eclipse_Hono-available-green.svg)
+![Available in Bosch IoT Things](images/shields/Bosch_IoT_Things-available-green.svg)
+![Available in Bosch IoT Developer Console](images/shields/Bosch_IoT_Developer_Console-available-green.svg)
+![You can work directly on this device](images/shields/Hacking_on_device-available-green.svg)
+
 # Bosch XDK
 
-I’m a programmable sensor device & a prototyping platform for any IoT use case you can imagine.
+Iï¿½m a programmable sensor device & a prototyping platform for any IoT use case you can imagine.
 
 <img src="images/Bosch_XDK_21.png " width="255">
 	
@@ -33,6 +38,6 @@ The XDK110 is a universal programmable sensor device that enables rapid prototyp
 
 ## Additional information
 
-Available with the XDK Workbench Version 2.0.0 onwards, the XDK Workbench ships with an additional feature called Firmware Over the Air (FOTA). FOTA is a method to update your firmware wirelessly, i.e. over Wi-Fi. To do so, please make sure that your bootloader is FOTA compatible by overwriting your current bootloader as described in the [XDK General Information Guide] (https://xdk.bosch-connectivity.com/guides) and your current bootloader type is set to „FOTA Compatible“ in the XDK preferences.
+Available with the XDK Workbench Version 2.0.0 onwards, the XDK Workbench ships with an additional feature called Firmware Over the Air (FOTA). FOTA is a method to update your firmware wirelessly, i.e. over Wi-Fi. To do so, please make sure that your bootloader is FOTA compatible by overwriting your current bootloader as described in the [XDK General Information Guide] (https://xdk.bosch-connectivity.com/guides) and your current bootloader type is set to ï¿½FOTA Compatibleï¿½ in the XDK preferences.
 
 Detailed technical specifications can be found on the [product page](http://xdk.io). XDK API Documentation [API page](https://xdk.bosch-connectivity.com/xdk-api).

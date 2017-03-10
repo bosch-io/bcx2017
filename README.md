@@ -8,6 +8,8 @@ The general idea of this setup is: We want you to be able to prototype IoT ideas
 
 All of these devices are already connected to a *Messaging Hub* based on [Eclipse Hono](https://www.eclipse.org/hono) running on the Internet. We have also tried to make sure that you can easily access the data and events produced by these devices using multiple APIs.
 
+By the way – many of the available devices allow you to work not just with the data on the backend, but directly on the device itself.
+
 The following diagram provides an overview of the setup.
 
 ![Overview diagram](Overview.png "Overview diagram")

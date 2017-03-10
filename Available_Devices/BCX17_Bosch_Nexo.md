@@ -1,3 +1,8 @@
+![Available in Eclipse Hono](images/shields/Eclipse_Hono-available-green.svg)
+![Available in Bosch IoT Things](images/shields/Bosch_IoT_Things-available-green.svg)
+![Available in Bosch IoT Developer Console](images/shields/Bosch_IoT_Developer_Console-available-green.svg)
+![You can work directly on this device](images/shields/Hacking_on_device-available-green.svg)
+
 # Bosch Rexroth Nexo 
 
 On Nexo the complete control unit is in the nutrunner – the first of its kind. High-quality measuring electronics for torque and angle of rotation have been integrated directly into the device and can be incorporated without additional hardware into your network. And all of this without cords – easy and cost efficient.
