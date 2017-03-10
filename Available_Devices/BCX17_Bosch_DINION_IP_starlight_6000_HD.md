@@ -1,7 +1,7 @@
-![Available in Eclipse Hono](images/shields/Eclipse_Hono-available-green.svg)
-![Available in Bosch IoT Things](images/shields/Bosch_IoT_Things-available-green.svg)
-![Not available in Bosch IoT Developer Console](images/shields/Bosch_IoT_Developer_Console-not_available-red.svg)
-![You can work directly on this device](images/shields/Hacking_on_device-available-green.svg)
+![Available in Eclipse Hono](https://raw.githubusercontent.com/bsinno/bcx2017/master/Available_Devices/images/shields/Eclipse_Hono-available-green.svg)
+![Available in Bosch IoT Things](https://raw.githubusercontent.com/bsinno/bcx2017/master/Available_Devices/images/shields/Bosch_IoT_Things-available-green.svg)
+![Not available in Bosch IoT Developer Console](https://raw.githubusercontent.com/bsinno/bcx2017/master/Available_Devices/images/shields/Bosch_IoT_Developer_Console-not_available-red.svg)
+![You can work directly on this device](https://raw.githubusercontent.com/bsinno/bcx2017/master/Available_Devices/images/shields/Hacking_on_device-available-green.svg)
  
 # Bosch DINION IP starlight 6000 HD
 
