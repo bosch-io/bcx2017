@@ -1,14 +1,18 @@
 # Hono Java Clients (Consumer and Sender)
 
-Here you find the Maven projects described on the [User-guide](https://www.eclipse.org/hono/user-guide/) of the Hono website.
+Simple Java clients for Hono, description can be found in the [Hono User-guide](https://www.eclipse.org/hono/user-guide/).
 
 ## [Consumer](https://www.eclipse.org/hono/user-guide/java_client_consumer/)
 
 ### Clone project
-Please clone the git project
+
+**If you have already cloned this repository please skip this step.**
+
+Please clone the git project and change to the current directory
 
 ```shell
 $ git clone https://github.com/bsinno/bcx2017.git
+$ cd Example_Clients/Hono-Java
 ```
 
 ### Build it
