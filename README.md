@@ -48,6 +48,7 @@ List all devices with available event data:
 
 Get last ten telemetry data sets from device rrc.655997720 (one of our thermostats):
 > http://bcx-workhorse.bosch-iot-suite.com/telemetry?deviceId=rrc.655997720&limit=10
+
 Get last ten events from device esp8266.60019400998b
 > http://bcx-workhorse.bosch-iot-suite.com/events?deviceId=esp8266.60019400998b&limit=10
 
