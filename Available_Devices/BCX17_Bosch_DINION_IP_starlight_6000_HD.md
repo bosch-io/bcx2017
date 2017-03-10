@@ -1,3 +1,8 @@
+![Available in Hono](images/shields/Hono-available-green.webarchive)
+![Available in Bosch IoT Things](images/shields/Bosch_IoT_Things-available-green.webarchive)
+![Not available in Bosch IoT Developer Console](images/shields/Bosch_IoT_Developer_Console-not_available-red.webarchive)
+![You can work on this device](images/shields/Hacking_on_device-available-green.webarchive)
+
 # Bosch DINION IP starlight 6000 HD
 
 The Bosch DINION IP starlight 6000 HD is a excellent low-light performance surveillance camera that can be used to detect autonomous scenarios. In addition, with the Microsoft cloud you can analyse emotion in faces.
