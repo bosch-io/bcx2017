@@ -157,9 +157,9 @@ of using the Java Client.
 [Things Integration Client](https://cr.apps.bosch-iot-cloud.com/dokuwiki/doku.php?id=005_dev_guide:005_java_api:005_java_api)
 * [Code examples](https://github.com/bsinno/iot-things-examples) of using the Things Integration Client (Java)
 
-# All I hear is APIs – Is there anything like a graphical dashboard…?
+# That was a lot of APIs – is there anything like a graphical dashboard…?
 
-We're glad you ask. Cue the [Bosch IoT Developer Console](http://console.bosch-iot-suite.com)
+We're glad you asked. Cue the [Bosch IoT Developer Console](http://console.bosch-iot-suite.com)
 
 [to do] Documentation around Developer Console
 
