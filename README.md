@@ -60,23 +60,23 @@ In order to retrieve data, you need to write queries in the [InfluxQL query lang
 
 Here are some examples you can use as a starting point for your own experiments.
 
-## Read out latest 10 telemetry data sets from the XDK with the MAC address 7C:EC:79:D3:33:82
+## Read out latest 10 telemetry data sets from one of the Bosch wall thermostats
 
-> SELECT * from xdk.7cec79d33382 ORDER BY time desc LIMIT 10
-
-```
-curl -G 'http://bcx-workhorse.bosch-iot-suite.com.com:8086/query?pretty=true&u=USERNAME&p=PASSWORD' --data-urlencode "db=bcx2017_telemetry" --data-urlencode "q=SELECT \"*\" FROM \"xdk.7cec79d33382\" ORDER BY time desc LIMIT 10"
-```
-
-## Read out latest entry from all Nexo nutrunners
-
-> select * from /nexo\..*/ order by time desc limit 1
+> SELECT * from "rrc.655997720" ORDER BY time desc LIMIT 10
 
 ```
-curl -G 'http://bcx-workhorse.bosch-iot-suite.com:8086/query?pretty=true&u=USERNAME&p=PASSWORD' --data-urlencode "db=bcx2017_telemetry" --data-urlencode "q=SELECT \"*\" FROM \"/nexo\\..*/\" ORDER BY time desc LIMIT 1"
+curl -G -u USER:PASS --data-urlencode "db=bcx2017_telemetry" http://bcx-workhorse.bosch-iot-suite.com:8086/query --data-urlencode 'q=SELECT * from "rrc.655997720" order by time desc limit 10' --data-urlencode pretty=true
 ```
 
-Further guidance can be found in the [Getting Started](https://docs.influxdata.com/influxdb/v1.2/introduction/getting_started/) section of the InfluxDB documentation and on the [InfluxDB API page](https://docs.influxdata.com/influxdb/v1.2/tools/api/) (see "query").
+## Read out latest entry from all XDKs
+
+> select * from /xdk\..*/ order by time desc limit 1
+
+```
+curl -G -u USER:PASS --data-urlencode "db=bcx2017_telemetry" http://bcx-workhorse.bosch-iot-suite.com:8086/query --data-urlencode 'q=SELECT * from /xdk\..*/ order by time desc limit 10' --data-urlencode pretty=true
+```
+
+Further guidance can be found in the [Getting Started](https://docs.influxdata.com/influxdb/v1.2/introduction/getting_started/) section of the InfluxDB documentation and on the [InfluxDB API page](https://docs.influxdata.com/influxdb/v1.2/tools/api/) (see "query").
 
 # What if I want to look at the whole device, not just messages? 
 
