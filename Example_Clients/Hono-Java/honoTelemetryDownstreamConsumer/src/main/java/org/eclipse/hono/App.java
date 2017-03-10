@@ -15,51 +15,33 @@ import org.eclipse.hono.util.MessageHelper;
 import java.util.concurrent.CountDownLatch;
 
 public class App {
-    public static final String QPID_ROUTER_HOST = "hono.bosch-iot-suite.com";
+    public static final String QPID_ROUTER_HOST = "192.168.99.100";
     public static final short  QPID_ROUTER_PORT = 15671;
 
-    public static final String TENANT_ID = "bcx";
+    public static final String TENANT_ID = "DEFAULT_TENANT";
 
     private final Vertx vertx = Vertx.vertx();
     private final HonoClient honoClient;
 
     private final CountDownLatch latch;
 
-    public App(String[] args) {
-	Credentials honoConsumerCreds = new Credentials();
-        parseCmdline(honoConsumerCreds, args);
-
+    public App() {
         honoClient = new HonoClient(vertx,
                 ConnectionFactoryImpl.ConnectionFactoryBuilder.newBuilder()
                         .vertx(vertx)
                         .host(QPID_ROUTER_HOST)
                         .port(QPID_ROUTER_PORT)
-                        .user(honoConsumerCreds.getUser())
-                        .password(honoConsumerCreds.getPassword())
+                        .user("user1@HONO")
+                        .password("pw")
                         .trustStorePath("certs/trusted-certs.pem")
                         .disableHostnameVerification()
                         .build());
         latch = new CountDownLatch(1);
     }
 
-    private void parseCmdline(Credentials honoConsumerCreds, String[] args) {
-        for (int i = 0; i < args.length-1; i++) {
-            if ("--user".equals(args[i])) {
-                honoConsumerCreds.setUser(args[++i]);
-            }
-            else if ("--password".equals(args[i])) {
-                honoConsumerCreds.setPassword(args[++i]);
-            }
-        }
-        if (honoConsumerCreds.getUser() == null || honoConsumerCreds.getPassword() == null) {
-            System.err.println("Usage: <app> --user <user> --password <password>");
-            System.exit(-1);
-        }
-    }
-
     public static void main(String[] args) throws Exception {
         System.out.println("Starting downstream consumer...");
-        App app = new App(args);
+        App app = new App();
         app.consumeTelemetryData();
         System.out.println("Finishing downstream consumer.");
     }
@@ -109,26 +91,5 @@ public class App {
         }
 
         System.out.println(sb.toString());
-    }
-
-    private class Credentials {
-        String user;
-        String password;
-
-        public String getUser() {
-            return user;
-        }
-
-        public void setUser(String user) {
-            this.user = user;
-        }
-
-        public String getPassword() {
-            return password;
-        }
-
-        public void setPassword(String password) {
-            this.password = password;
-        }
     }
 }

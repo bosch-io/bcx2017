@@ -7,7 +7,7 @@ The following devices are pre-connected and deliver their telemetry data into th
 - [Bosch FLEXIDOME IP panoramic 7000 MP](BCX17_Bosch_FLEXIDOME_IP_panoramic_7000_MP.md) - 360° Security Camera 
 - [Bosch Rexroth Nexo](BCX17_Bosch_Nexo.md) - Highly integrated cordless nutrunner
 - [Bosch Rexroth PRC7000](BCX17_Bosch_PRC7000.md) - Latest generation of resistance welding control systems
-- [Bosch GLM 100C](BCX17_Bosch_GLM100C.md) - Professional bluetooth laser measure
+- [Bosch GLM 100C](BCX_Bosch_GLM100C.md) - Professional bluetooth laser measure
 - [Raspberry Pi](Raspberry_Pi/) - Prototyping platform 
 
 
