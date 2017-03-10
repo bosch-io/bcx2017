@@ -40,21 +40,21 @@ All telemetry data sent in from devices is also fed into an istance of the open 
 
 If you want to just quickly retrieve historical data without getting too much into InfluxDB, use these simple webservices we created for you:
 
-```
-# list all devices with available telemetry data   http://bcx-workhorse.bosch-iot-suite.com/telemetry
-# list all devices with available event data
-http://bcx-workhorse.bosch-iot-suite.com/events      
+List all devices with available telemetry data:
+> http://bcx-workhorse.bosch-iot-suite.com/telemetry
 
-# Get last ten telemetry data sets from device rrc.655997720 (one of our thermostats)
-http://bcx-workhorse.bosch-iot-suite.com/telemetry?deviceId=rrc.655997720&limit=10
-# Get last ten events from device esp8266.60019400998b
-http://bcx-workhorse.bosch-iot-suite.com/events?deviceId=esp8266.60019400998b&limit=10
+List all devices with available event data:
+> http://bcx-workhorse.bosch-iot-suite.com/events      
 
-```
+Get last ten telemetry data sets from device rrc.655997720 (one of our thermostats):
+> http://bcx-workhorse.bosch-iot-suite.com/telemetry?deviceId=rrc.655997720&limit=10
+
+Get last ten events from device esp8266.60019400998b
+> http://bcx-workhorse.bosch-iot-suite.com/events?deviceId=esp8266.60019400998b&limit=10
 
 Interested to know more and have more flexible options? Read on.
 
-Telemetry is fed into the `hono-telemetry` database, events are fed into the `hono-events` database. Credentials for accessing the InfluxDB can be found on our passwords sheet.
+Telemetry is fed into the `bcx2017_telemetry` database, events are fed into the `bcx2017_events` database. Credentials for accessing the InfluxDB can be found on our passwords sheet.
 
 In order to retrieve data, you need to write queries in the [InfluxQL query language](https://docs.influxdata.com/influxdb/v1.2/query_language/) and execute them via e.g. `curl`, the InfluxDB CLI tools, or another InfluxDB client (e.g. Node-RED InfluxDB nodes).
 
@@ -159,11 +159,14 @@ of using the Java Client.
 [Things Integration Client](https://cr.apps.bosch-iot-cloud.com/dokuwiki/doku.php?id=005_dev_guide:005_java_api:005_java_api)
 * [Code examples](https://github.com/bsinno/iot-things-examples) of using the Things Integration Client (Java)
 
-# That was a lot of APIs – is there anything like a graphical dashboard…?
+# Getting started with the Developer Console
 
-We're glad you asked. Cue the [Bosch IoT Developer Console](http://console.bosch-iot-suite.com)
+The [Developer Console](https://console.bosch-iot-suite.com) lets you easily interact with the Bosch IoT Suite services in order to connect a device and build IoT applications. Click on the sub-topics to find out more: 
 
-[to do] Documentation around Developer Console
+* [Register a new device](Documentation/DevConsole/register_new.md)
+* [Send device payload to Bosch IoT Things via Hono](Documentation/DevConsole/send_telemetry_data.md)
+* [Visualize device payload](Documentation/DevConsole/visualize_data.md)
+* [Describe a device with thing types](Documentation/DevConsole/create_thingtype.md)
 
 # What else do I need to get started?
 
