@@ -24,35 +24,19 @@
  * REPRESENTATIVES AND ORGANS.
  */
 
-#include "ArduinoJson.h" // Make sure you install the ArduinoJson library...
-#include "RestClient.h" // ...and the ESP8266RestClient library
-#include "settings.h" // ...then edit your WiFi settings in this header file
+#include "settings.h"
 
 byte espMacAddress[6];
 
 WiFiClient wifi;
-RestClient http = RestClient(hono_host, hono_port);
 
 char uri_telemetry[512];
 char uri_event[512];
 char payload_topic[512];
 
-bool prevPIR = false;
-bool prevButton = false;
 
-unsigned long lastMillis = 0;
 
-float getVcc () {
-  return ESP.getVcc() / 1000.0;
-}
 
-int getPIR() {
-  return digitalRead(PIN_PIR);
-}
-
-bool getButton() {
-  return !digitalRead(PIN_BUTTON);
-}
 
 void setup() {
   Serial.begin(115200);
@@ -64,7 +48,7 @@ void setup() {
   Serial.println();
 
   // ---- HW Setup ---- 
-  pinMode(PIN_BUTTON, INPUT);
+  setup_sensors();
 
   // ---- Wifi Setup ----
   WiFi.macAddress(espMacAddress);
@@ -78,41 +62,22 @@ void setup() {
     espMacAddress[4],
     espMacAddress[5]);
 
-  sprintfMacAddress(uri_telemetry, template_uri_telemetry, espMacAddress);
-  sprintfMacAddress(uri_event, template_uri_event, espMacAddress);
-  sprintfMacAddress(payload_topic, template_payload_topic, espMacAddress);
+    logmsg("Wifi", "Connecting");
+    WiFi.begin(wifi_ssid, wifi_pass);
+    while (WiFi.status() != WL_CONNECTED) {
+        delay(500);
+        Serial.print(".");
+    }
+    Serial.println();
+    logmsg("Wifi", "Connected, IP adress: ");
+    Serial.println(WiFi.localIP());    
 
-  logmsg("Wifi", "Connecting");
-  WiFi.begin(wifi_ssid, wifi_pass);
-  while (WiFi.status() != WL_CONNECTED) {
-    delay(500);
-    Serial.print(".");
-  }
-  Serial.println();
-  logmsg("Wifi", "Connected, IP adress:");
-  Serial.println(WiFi.localIP());    
+    setup_webserver();
+    setup_hono();
 }
 
 void loop() {
-  bool pir = getPIR();
-  if (prevPIR != pir) {
-    logmsg("PIR", "Value changed to ");
-    Serial.println(pir);
-    prevPIR = pir;
-    publish_pir_event(pir);
-  }
-
-  bool button = getButton();
-  if (prevButton != button) {
-    logmsg("Button", "Value changed to ");
-    Serial.println(button);
-    prevButton = button;
-    publish_button_event(button);
-  }
-
-  if (millis() - lastMillis > sensorUpdateRateMS) {
-    lastMillis = millis();
-    publish_sensors();
-  }  
+    loop_sensors();
+    loop_webserver();
 }
 

@@ -38,6 +38,7 @@ void publish_json(const char * title, const char * uri, JsonObject& root) {
 
   root.printTo(buffer, sizeof(buffer));
   Serial.printf("[%s] HTTP PUT %s\n%s\n", title, uri, buffer);
+  RestClient http = RestClient(hono_host, hono_http_port);
   int result = http.put(uri, buffer);
   Serial.printf("[%s] HTTP PUT result: %i\n", title, result);
 }
