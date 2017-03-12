@@ -43,10 +43,6 @@ float getVcc () {
   return ESP.getVcc() / 1000.0;
 }
 
-int getPIR() {
-  return digitalRead(PIN_PIR);
-}
-
 bool getButton() {
   return !digitalRead(PIN_BUTTON);
 }
@@ -96,14 +92,6 @@ void setup() {
 void loop() {
   loop_sensors();
   
-  bool pir = getPIR();
-  if (prevPIR != pir) {
-    logmsg("PIR", "Value changed to ");
-    Serial.println(pir);
-    prevPIR = pir;
-    publish_pir_event(pir);
-  }
-
   bool button = getButton();
   if (prevButton != button) {
     logmsg("Button", "Value changed to ");

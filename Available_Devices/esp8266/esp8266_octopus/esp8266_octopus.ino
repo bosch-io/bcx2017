@@ -66,6 +66,7 @@ void setup() {
 
     setup_webserver();
     setup_hono();
+    setLed(1);
 }
 
 void loop() {

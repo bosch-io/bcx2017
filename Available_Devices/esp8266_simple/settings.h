@@ -22,11 +22,8 @@ enum Hono_message_type {
 
 // ---- Wifi Configuration ----
 
-//const char *wifi_ssid = "BCX17 OpenHack";
-//const char *wifi_pass = "BCX17.opnh";
-
-const char *wifi_ssid = "sazgw00056";
-const char *wifi_pass = "7aEbcvPdShz7guIQfqRg";
+const char *wifi_ssid = "BCX17 OpenHack";
+const char *wifi_pass = "BCX17.opnh";
 
 const char *template_uri_telemetry = "/telemetry/bcx/esp8266.%02x%02x%02x%02x%02x%02x";
 const char *template_uri_event = "/event/bcx/esp8266.%02x%02x%02x%02x%02x%02x";
