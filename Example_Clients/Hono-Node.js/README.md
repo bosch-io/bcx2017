@@ -9,8 +9,13 @@ The script is based on the [rhea amqp library](https://github.com/grs/rhea). Bas
 ```
 npm install  # will install minimist and rhea as stated in package.json
 
-node Hono_Receiver.js --host myhostname --port 15672 --user me --pass secret
+node Hono_Receiver.js --host myhostname --port 15672 --user me --pass secret 
+```
 
+Optionally, you can specify a regex to filter the messages displayed:
+
+```
+node Hono_Receiver.js --host myhostname --port 15672 --user me --pass secret --filter xdk
 ```
 
 In order to see debug output, set the `DEBUG` variable accordingly before running the script:
