@@ -1,7 +1,7 @@
-![Available in Eclipse Hono](images/shields/Eclipse_Hono-available-green.svg)
-![Available in Bosch IoT Things](images/shields/Bosch_IoT_Things-available-green.svg)
-![Not available in Bosch IoT Developer Console](images/shields/Bosch_IoT_Developer_Console-not_available-red.svg)
-![You can work directly on this device](images/shields/Hacking_on_device-available-green.svg)
+![Available in Eclipse Hono](../images/shields/Eclipse_Hono-available.png)
+![Not available in Bosch IoT Things](../images/shields/Bosch_IoT_Things-not_available.png)
+![Not available in Bosch IoT Developer Console](../images/shields/Bosch_IoT_Developer_Console-not_available.png)
+![You can work directly on this device](../images/shields/Hacking_on_device-available.png)
 
 # ESP8266
 
@@ -43,10 +43,10 @@ In the library manager, install the following modules:
 The naming convention of the ESP8266 differs from the usual Arduino pin names. The Arduino Pin Definitions can be found in the [esp8266 Arduino repository](https://github.com/esp8266/Arduino/blob/master/variants/nodemcu/pins_arduino.h#L37-L59.)
 
 The following diagra shows the NodeMCU and Octopus pinouts (courtesy of [fab-lab.eu](http://fab-lab.eu/))
-![octo_pinout_final_header.jpg]()
+![](octo_pinout_final_header.jpg)
 
-| Pin number | Function   |
---------------------------|
+| Pin number | Function                        |
+|------------|---------------------------------|
 | 0          | GPIO0 (Flash button on NodeMCU)
 | 1          | GPIO1
 ] 2          | GPIO2

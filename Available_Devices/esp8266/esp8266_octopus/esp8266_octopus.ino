@@ -41,6 +41,7 @@ void setup() {
 
   // ---- HW Setup ---- 
   setup_sensors();
+  setNeoPixelColor(0, 0, 255);
 
   // ---- Wifi Setup ----
   WiFi.macAddress(espMacAddress);
@@ -66,7 +67,7 @@ void setup() {
 
     setup_webserver();
     setup_hono();
-    setLed(1);
+    setNeoPixelColor(0, 255, 0);
 }
 
 void loop() {
