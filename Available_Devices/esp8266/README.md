@@ -42,29 +42,10 @@ In the library manager, install the following modules:
 
 The naming convention of the ESP8266 differs from the usual Arduino pin names. The Arduino Pin Definitions can be found in the [esp8266 Arduino repository](https://github.com/esp8266/Arduino/blob/master/variants/nodemcu/pins_arduino.h#L37-L59.)
 
-The following diagra shows the NodeMCU and Octopus pinouts (courtesy of [fab-lab.eu](http://fab-lab.eu/))
-![](octo_pinout_final_header.jpg)
+The following diagrams show an overview of the NodeMCU and Octopus boards (courtesy of [fab-lab.eu](http://fab-lab.eu/))
 
-| Pin number | Function                        |
-|------------|---------------------------------|
-| 0          | GPIO0 (Flash button on NodeMCU)
-| 1          | GPIO1
-] 2          | GPIO2
-| 3          | GPIO3
-| 4          | GPIO4 (SDA)
-| 5          | GPIO5 (SCL)
-| 6          | GPIO6
-| 7          | GPIO7
-| 8          | GPIO8
-| 9          | GPIO9
-| 10         | GPIO10
-| 11         | GPIO11
-| 12         | GPIO12
-| 13         | GPIO13
-| 14         | GPIO14
-| 15         | GPIO15
-| 16         | GPIO16 (Also used for sleep mode)
-| A0         | ADC (note: disable current measurement in settings.h to use this port) |
+![](octo_pinout_final_header.jpg)
+![](octo_pinout_final_top.jpg)
 
 ## Connectivity
 

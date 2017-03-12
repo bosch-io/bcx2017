@@ -30,7 +30,6 @@ ADC_MODE(ADC_VCC); // enable reading in VCC of ESP8266
 
 const int sensorUpdateRateMS = 10000; // Send updated sensor value every 10 seconds
 
-#define PIN_BUTTON        0    // Use GPIO0 for button input
 #define PIN_NEOPIXEL      13
 
 // ---- Types ----
@@ -43,6 +42,7 @@ enum Hono_message_type {
 // ----- Functions ----
 
 const char * getDeviceId();
+void setHumidityThreshold(double f);
 
 #endif
 

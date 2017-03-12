@@ -11,6 +11,23 @@ void handleRoot() {
     server.send(200, "text/plain", message);
 }
 
+void handleSet() {
+    String message = "Settings change\n\n";
+    for (uint8_t i=0; i<server.args(); i++){
+        if(server.argName(i).equals("humidityThreshold")) {
+            message += "New humidity threshold: " + server.arg(i) + "\n";
+            double th = server.arg(i).toFloat();
+            Serial.println(th);
+            setHumidityThreshold(th);
+        } else {
+            message += "Unknown argument: " + server.argName(i) + "\n";
+        }
+    }
+  
+    server.send(404, "text/plain", message);
+    logmsg("Webserver", message);
+}
+
 void handleNotFound(){
     String message = "404 Not Found\n\n";
     message += "URI: ";
@@ -33,6 +50,7 @@ void setup_webserver() {
     byte macAddress[6];
     
     server.on("/", handleRoot);
+    server.on("/set", handleSet);
     server.onNotFound(handleNotFound);
     server.begin();
     logmsgln("Webserver", "Listening on port 80");
