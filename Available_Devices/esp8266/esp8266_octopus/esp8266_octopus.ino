@@ -26,37 +26,42 @@
 
 #include "settings.h"
 
-byte espMacAddress[6];
+byte macAddress[6];
+const char *templateHostname = "esp8266-%02x%02x%02x%02x%02x%02x";
+char myHostName[100];
 
 WiFiClient wifi;
 
 void setup() {
-  Serial.begin(115200);
+    Serial.begin(115200);
 
-  Serial.println();
-  Serial.println();
-  Serial.println("--- esp8266 example starting --- ");
-  logmsg("Reset reason", ESP.getResetReason());
-  Serial.println();
+    Serial.println();
+    Serial.println();
+    Serial.println("--- esp8266 example starting --- ");
+    logmsg("Reset reason", ESP.getResetReason());
+    Serial.println();
 
-  // ---- HW Setup ---- 
-  setup_sensors();
-  setNeoPixelColor(0, 0, 255);
+    // ---- HW Setup ---- 
+    setupSensors();
+    setNeoPixelColor(0, 0, 255);
 
-  // ---- Wifi Setup ----
-  WiFi.macAddress(espMacAddress);
+    // ---- Wifi Setup ----
+    WiFi.macAddress(macAddress);
+    sprintf(myHostName, templateHostname, macAddress[0], macAddress[1], macAddress[2], macAddress[3], macAddress[4], macAddress[5]);
+    WiFi.hostname(myHostName);
 
-  logmsg("MAC address", "");
-  Serial.printf("%02x:%02x:%02x:%02x:%02x:%02x\n",
-    espMacAddress[0],
-    espMacAddress[1],
-    espMacAddress[2],
-    espMacAddress[3],
-    espMacAddress[4],
-    espMacAddress[5]);
-
-    logmsg("Wifi", "Connecting");
-    WiFi.begin(wifi_ssid, wifi_pass);
+    logmsg("MAC address", "");
+    Serial.printf("%02x:%02x:%02x:%02x:%02x:%02x\n",
+        macAddress[0],
+        macAddress[1],
+        macAddress[2],
+        macAddress[3],
+        macAddress[4],
+        macAddress[5]);
+    logmsgln("Host name", WiFi.hostname());
+    logmsg("Wifi", "Connecting to ");
+    Serial.printf("'%s'", wifiSsid);
+    WiFi.begin(wifiSsid, wifiPass);
     while (WiFi.status() != WL_CONNECTED) {
         delay(500);
         Serial.print(".");
@@ -65,13 +70,16 @@ void setup() {
     logmsg("Wifi", "Connected, IP adress: ");
     Serial.println(WiFi.localIP());    
 
-    setup_webserver();
-    setup_hono();
+    setupWebserver();
+    setupHono();
     setNeoPixelColor(0, 255, 0);
 }
 
 void loop() {
-    loop_sensors();
-    loop_webserver();
+    loopSensors();
+    loopWebserver();
 }
 
+const char * getHostName() {
+    return myHostName;
+}

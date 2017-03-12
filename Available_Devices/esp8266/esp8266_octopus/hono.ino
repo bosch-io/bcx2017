@@ -1,23 +1,23 @@
 
 #include "settings.h"
 
-const char *template_hono_device_id = "esp8266.%02x%02x%02x%02x%02x%02x";
-char hono_device_id[15];
+const char *templateHonoDeviceId = "esp8266.%02x%02x%02x%02x%02x%02x";
+char honoDeviceId[15];
 
-bool setup_hono() {
+bool setupHono() {
     bool result = false;
     byte macAddress[6];
 
     WiFi.macAddress(macAddress);
-    sprintf(hono_device_id, template_hono_device_id, macAddress[0], macAddress[1], macAddress[2], macAddress[3], macAddress[4], macAddress[5]);
+    sprintf(honoDeviceId, templateHonoDeviceId, macAddress[0], macAddress[1], macAddress[2], macAddress[3], macAddress[4], macAddress[5]);
 
-    Serial.printf("[Hono]         Registering device '%s' with Hono server %s:%i: ", hono_device_id,hono_host, hono_http_port);
+    Serial.printf("[Hono]         Registering device '%s' with Hono server %s:%i: ", honoDeviceId, honoHost, honoHttpPort);
 
-    RestClient http = RestClient(hono_host, hono_http_port);
+    RestClient http = RestClient(honoHost, honoHttpPort);
     char uri[512];
     char buffer[512];
-    sprintf(uri, "http://%s:%i/registration/%s", hono_host, hono_http_port, hono_tenant);
-    sprintf(buffer, "device_id=%s&creater=self-registered", hono_device_id);
+    sprintf(uri, "http://%s:%i/registration/%s", honoHost, honoHttpPort, honoTenant);
+    sprintf(buffer, "device_id=%s&creater=self-registered", honoDeviceId);
     int statusCode = http.post(uri, buffer);
     if (statusCode == 201 || statusCode == 409) {
       result = true;
@@ -26,12 +26,12 @@ bool setup_hono() {
       Serial.printf("Statuscode %i - unknown result\n", statusCode);
     }
 
-    publish_string_event("startup", WiFi.localIP().toString());
+    publishStringEvent("startup", WiFi.localIP().toString());
 
     return result;
 }
 
-bool publish(Hono_message_type msgType, JsonObject& root) {
+bool publish(HonoMessageType msgType, JsonObject& root) {
     bool result = false;
     char uri[512];
     char buffer[512];
@@ -41,12 +41,12 @@ bool publish(Hono_message_type msgType, JsonObject& root) {
 
 
     if (msgType == EVENT) {
-        sprintf(uri, "http://%s:%i/event/%s/%s", hono_host, hono_http_port, hono_tenant, hono_device_id);
+        sprintf(uri, "http://%s:%i/event/%s/%s", honoHost, honoHttpPort, honoTenant, honoDeviceId);
     } else {
-        sprintf(uri, "http://%s:%i/telemetry/%s/%s", hono_host, hono_http_port, hono_tenant, hono_device_id);
+        sprintf(uri, "http://%s:%i/telemetry/%s/%s", honoHost, honoHttpPort, honoTenant, honoDeviceId);
     }    
   
-    RestClient http = RestClient(hono_host, hono_http_port);
+    RestClient http = RestClient(honoHost, honoHttpPort);
     Serial.printf("[Hono]         HTTP PUT %s: ", uri);
     int statusCode = http.put(uri, buffer);
     if (statusCode == 202) {
@@ -64,7 +64,7 @@ bool publish(Hono_message_type msgType, JsonObject& root) {
     return result;
 }
 
-void publish_bool_event(const char * key, bool value) {
+void publishBoolEvent(const char * key, bool value) {
     StaticJsonBuffer<512> jsonBuffer;
     JsonObject& root = jsonBuffer.createObject();
     root[key] = value;
@@ -73,7 +73,7 @@ void publish_bool_event(const char * key, bool value) {
     publish(EVENT, root);
 }
 
-void publish_string_event(const char * key, String value) {
+void publishStringEvent(const char * key, String value) {
     StaticJsonBuffer<512> jsonBuffer;
     JsonObject& root = jsonBuffer.createObject();
     root[key] = value;
@@ -83,11 +83,5 @@ void publish_string_event(const char * key, String value) {
 }
 
 const char * getDeviceId() {
-    return hono_device_id;
+    return honoDeviceId;
 }
-
-
-
-
-
- 

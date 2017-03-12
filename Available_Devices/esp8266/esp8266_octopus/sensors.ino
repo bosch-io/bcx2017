@@ -10,9 +10,12 @@ Adafruit_NeoPixel strip = Adafruit_NeoPixel(1, PIN_NEOPIXEL, NEO_GRB + NEO_KHZ80
 bool prevButton = false;
 unsigned long lastMillis = 0;
 bool bme280Initialized = false;
+bool bno055Initialized = false;
 
 bool prevHighHumidity = false;
 double humidityThreshold = 50.0;
+
+Bno055Values bnoValues;
 
 float getVcc () {
   return ESP.getVcc() / 1000.0;
@@ -20,14 +23,14 @@ float getVcc () {
 
 void setNeoPixelColor(char red, char green, char blue) {
     uint32_t c = strip.Color(red, green, blue);
-    
+
     for(uint16_t i=0; i<strip.numPixels(); i++) {
         strip.setPixelColor(i, c);
     }
     strip.show();
 }
 
-void publish_value_alert(String key, bool state, double value) {
+void publishValueAlert(String key, bool state, double value) {
     StaticJsonBuffer<512> jsonBuffer;
     JsonObject& root = jsonBuffer.createObject();
     JsonObject& keyObject = root.createNestedObject(key);
@@ -38,7 +41,7 @@ void publish_value_alert(String key, bool state, double value) {
     publish(EVENT, root);
 }
 
-void publish_sensors() {
+void publishSensors() {
     StaticJsonBuffer<512> jsonBuffer;
 
     logmsgln("Sensors", "Collecting telemetry data");
@@ -64,43 +67,44 @@ void publish_sensors() {
 
 // ---- Initialization & loop ----
 
-void setup_sensors() {
+void setupSensors() {
     strip.begin();
     strip.show(); // Initialize all pixels to 'off'
  
-    logmsg("Sensors", "Searching for BME280: ");
     delay(500);
+    logmsg("Sensors", "Searching for BME280: ");
     if (bme.begin()) {
         bme280Initialized = true;
-        delay(100);
         Serial.println("OK");
     } else {
         Serial.println("Not found");
     }
+    delay(500);
 }
 
-void loop_sensors() {
+void loopSensors() {
     double h = bme.readHumidity();
     if (h > humidityThreshold) {
         if (!prevHighHumidity) {
             setNeoPixelColor(255, 0, 0);
             logmsgln("Sensors", "High humidity detected");
             prevHighHumidity = true;
-            publish_value_alert("humidity_alert", true, h);
+            publishValueAlert("humidity_alert", true, h);
         }
     } else {
         if (prevHighHumidity) {
             setNeoPixelColor(0, 255, 0);
             logmsgln("Sensors", "Humidity no longer high");
             prevHighHumidity = false;
-            publish_value_alert("humidity_alert", false, h);
+            publishValueAlert("humidity_alert", false, h);
         }            
     }
 
     if (millis() - lastMillis > sensorUpdateRateMS) {
         lastMillis = millis();
-        publish_sensors();
+        publishSensors();
     }
+    delay(loopDelay);
 }
 
 void setHumidityThreshold(double th) {

@@ -1,8 +1,5 @@
 ESP8266WebServer server(80);
 
-char mdns_hostname[100];
-const char *template_hostname = "esp8266-%02x%02x%02x%02x%02x%02x";
-
 void handleRoot() {
     String message = "Hi. I'm '";
     message += getDeviceId();
@@ -46,30 +43,19 @@ void handleNotFound(){
 }
 
 
-void setup_webserver() {
-    byte macAddress[6];
-    
+void setupWebserver() {
     server.on("/", handleRoot);
     server.on("/set", handleSet);
     server.onNotFound(handleNotFound);
     server.begin();
     logmsgln("Webserver", "Listening on port 80");
 
-    logmsg("Webserver", "My hostname is: ");
-    Serial.println(WiFi.hostname());
-
-    WiFi.macAddress(macAddress);
-    sprintf(mdns_hostname, template_hostname, macAddress[0], macAddress[1], macAddress[2], macAddress[3], macAddress[4], macAddress[5]);
-
-    if (MDNS.begin(mdns_hostname)) {
+    if (MDNS.begin(getHostName())) {
         MDNS.addService("http", "tcp", 80);
-        logmsg("mDNS", "Visit me at ");
-        Serial.printf("http://%s.local/\n", mdns_hostname);
     }
 }
 
-
-void loop_webserver() {
-      server.handleClient();
+void loopWebserver() {
+    MDNS.update();
+    server.handleClient();
 }
-

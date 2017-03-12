@@ -9,15 +9,15 @@
 #include "ArduinoJson.h" // Make sure you have the ArduinoJson library installed
 #include "RestClient.h" // Make sure you have the ESP8266RestClient library installed
 
-// ---- Hono Configuration ----
-const char *hono_host = "hono.bosch-iot-suite.com";
-const int hono_http_port = 8080;
-const char *hono_tenant = "bcx";
-
 // ---- Wifi Configuration ----
 
-const char *wifi_ssid = "BCX17 OpenHack";
-const char *wifi_pass = "BCX17.opnh";
+const char *wifiSsid = "BCX17 OpenHack";
+const char *wifiPass = "BCX17.opnh";
+
+// ---- Hono Configuration ----
+const char *honoHost = "hono.bosch-iot-suite.com";
+const int honoHttpPort = 8080;
+const char *honoTenant = "bcx";
 
 // ---- Hardware Configuration ----
 
@@ -30,7 +30,7 @@ const int sensorUpdateRateMS = 10000; // Send updated sensor value every 10 seco
 
 // ---- Types ----
 
-enum Hono_message_type {
+enum HonoMessageType {
     TELEMETRY,
     EVENT 
 };
@@ -38,6 +38,14 @@ enum Hono_message_type {
 // ----- Functions ----
 
 const char * getDeviceId();
+const char * getHostName();
+void logmsg(const char * component, const String message);   
+void logmsgln(const char * component, const String message);    
+void setupSensors();
+void setupWebserver();
+bool setupHono();
+void loopSensors();
+void loopWebserver();
 
 #endif
 

@@ -14,35 +14,53 @@
 #include "ArduinoJson.h" // Make sure you have the ArduinoJson library installed
 #include "RestClient.h" // Make sure you have the ESP8266RestClient library installed
 
-// ---- Hono Configuration ----
-const char *hono_host = "hono.bosch-iot-suite.com";
-const int hono_http_port = 8080;
-const char *hono_tenant = "bcx";
-
 // ---- Wifi Configuration ----
 
-const char *wifi_ssid = "BCX17 OpenHack";
-const char *wifi_pass = "BCX17.opnh";
+const char *wifiSsid = "BCX17 OpenHack";
+const char *wifiPass = "BCX17.opnh";
+
+// ---- Hono Configuration ----
+const char *honoHost = "hono.bosch-iot-suite.com";
+const int honoHttpPort = 8080;
+const char *honoTenant = "bcx";
 
 // ---- Hardware Configuration ----
 
 ADC_MODE(ADC_VCC); // enable reading in VCC of ESP8266
 
 const int sensorUpdateRateMS = 10000; // Send updated sensor value every 10 seconds
+const int loopDelay = 100;
 
 #define PIN_NEOPIXEL      13
 
 // ---- Types ----
 
-enum Hono_message_type {
+enum HonoMessageType {
     TELEMETRY,
     EVENT 
+};
+
+struct Bno055Values {
+    float orientationX;
+    float orientationY;
+    float orientationZ;
+    uint8_t calibrationSys;
+    uint8_t calibrationGyro;
+    uint8_t calibrationAccel;
+    uint8_t calibrationMag;
 };
 
 // ----- Functions ----
 
 const char * getDeviceId();
-void setHumidityThreshold(double f);
+const char * getHostName();
+void logmsg(const char * component, const String message);   
+void logmsgln(const char * component, const String message);    
+void setupSensors();
+void setupWebserver();
+bool setupHono();
+void loopSensors();
+void loopWebserver();
 
 #endif
 

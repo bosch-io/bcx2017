@@ -15,7 +15,7 @@ bool getButton() {
   return !digitalRead(PIN_BUTTON);
 }
 
-void publish_sensors() {
+void publishSensors() {
     StaticJsonBuffer<512> jsonBuffer;
     JsonObject& root = jsonBuffer.createObject();
     root["voltage"] = getVcc();
@@ -28,22 +28,22 @@ void publish_sensors() {
 
 // ---- Initialization & loop ----
 
-void setup_sensors() {
+void setupSensors() {
     pinMode(PIN_BUTTON, INPUT);
 }
 
-void loop_sensors() {
+void loopSensors() {
     bool button = getButton();
     if (prevButton != button) {
         logmsg("Button", "Value changed to ");
         Serial.println(button);
         prevButton = button;
-        publish_bool_event("button_flash", button);
+        publishBoolEvent("button_flash", button);
     }
 
     if (millis() - lastMillis > sensorUpdateRateMS) {
         lastMillis = millis();
-        publish_sensors();
+        publishSensors();
     }
 }
 

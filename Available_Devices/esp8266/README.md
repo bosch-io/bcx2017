@@ -29,8 +29,7 @@ To use the Octopus on a macOS machine, you might have to install a [USB serial d
 
 In the Arduino IDE, make sure to select these Board settings:
 
-- Board: "Generic ESP8266 Module"
-- Reset Method: "nodemcu"
+- Board: "Adafruit HUZZAH ESP8266"
 - Upload Speed: "921600"
  
 In the library manager, install the following modules:
