@@ -5,7 +5,7 @@
 
 # Bosch XDK
 
-I�m a programmable sensor device & a prototyping platform for any IoT use case you can imagine.
+I'm a programmable sensor device & a prototyping platform for any IoT use case you can imagine.
 
 <img src="images/Bosch_XDK_21.png " width="255">
 	
@@ -40,12 +40,12 @@ The XDK110 is a universal programmable sensor device that enables rapid prototyp
 
 Just turn on the XDK and it will send all sensor data to **Hono**, **Things** and to the **Developer Console**.
 
-Part of the XDK is a battery that can be recharged by using the usb-cable and connect it to any power source. Please make sure that the battery is charged when using the XDK.
+Part of the XDK is a battery that can be recharged by using the included micro usb-cable. You can connect it to any power source of your choice (e.g. your Notebook). Please make sure that the battery is charged when using the XDK.
 
-As default configuration the XDK sends every 10 seconds all sensor values to system mentioned above. If you just have the need to change this interval to a lower/higher value please get in contact with a **Hack Coach**.
+As default configuration the XDK sends every 10 seconds all sensor values to the systems mentioned above. If you have the need to change this interval to a lower/higher value please get in contact with a **Hack Coach**.
 
 If you want to change the preflashed firmware of the XDK you need the XDK Workbench which can be downloaded by the the provided **Nextcloud** link.
-Also in **Nextcloud** are the sources of the preflashed firmware. Just import it to the XDK Workbench and adapt it to your needs. Afterwards you can easily flash the adapted firmware to the XDK by using the usb-cable connected to your notebook and the XDK Workbench.
+Also in **Nextcloud** are the sources of the preflashed firmware. Just import it to the XDK Workbench and adapt it to your needs. Afterwards you can easily flash the adapted firmware to the XDK by using the usb-cable connected to your notebook.
 
 Of course you can also flash any other custom firmware if you want to. Check the example projects of the XDK Workbench as inspiration.
 
