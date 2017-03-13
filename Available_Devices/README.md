@@ -8,15 +8,15 @@ The following devices are pre-connected and deliver their telemetry data into th
 - [Bosch Rexroth Nexo](BCX17_Bosch_Nexo.md) - Highly integrated cordless nutrunner
 - [Bosch Rexroth PRC7000](BCX17_Bosch_PRC7000.md) - Latest generation of resistance welding control systems
 - [Bosch GLM 100C](BCX17_Bosch_GLM100C.md) - Professional bluetooth laser measure
+- [ESP8266](esp8266/) - Wifi-capable microcontroller that can be programmed like an Arduino
 - [Raspberry Pi](Raspberry_Pi/) - Prototyping platform 
 
 
 - Bosch RRC - **- Missing documentation -**
 - Bosch AMRA - **- Missing documentation -**
-- Bosch RRC Thermostat - **- Missing documentation -**
+
 
 - Kontakt.IO - **- Missing documentation -**
 - NetAtmo - **- Missing documentation -**
 
 
-- [ESP8266](esp8266/) - Arduino-like prototyping platform - but with Wifi! **- Missing documentation -**
