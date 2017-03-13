@@ -148,7 +148,7 @@ Example of JSON request body:
 ```
 
 ```
-curl -X PUT -u "USER:PASS" -H "Content-Type: application/json" --header "x-cr-api-token: PUT_TOKEN_HERE" -d '{"thingName":"SomeOtherName"}' https://things.apps.bosch-iot-cloud.com/cr/1/things/bcx:rrc.655997720/attributes/thingName
+curl -X PUT -u "USER:PASS" -H "Content-Type: application/json" --header "x-cr-api-token: PUT_TOKEN_HERE" -d '"SomeOtherName"' https://things.apps.bosch-iot-cloud.com/cr/1/things/bcx:rrc.655997720/attributes/thingName
 ```
 
 ### Further operations
