@@ -156,6 +156,3 @@ function exitHandler() {
     process.exit(1);
 }
 
-// Close connection before script exits, when CTRL+C is issued or uncaught exceptions occur
-process.on('SIGINT', exitHandler)
-       .on('uncaughtException', exitHandler);

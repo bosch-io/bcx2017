@@ -1,10 +1,10 @@
-# Welcome to [Bosch Connected Experience 2017](http://bcw.bosch-si.com/berlin/bcw-hackathon/)!
+﻿# Welcome to [Bosch Connected Experience 2017](http://bcw.bosch-si.com/berlin/bcw-hackathon/)!
 
 In this repository, you will find all the information needed to get started with the device hub we set up for this hackathon. The device hub itself is a custom setup for this hackathon and composed of components from the [Eclipse IoT](https://iot.eclipse.org) community, services from the [Bosch IoT Suite](https://bosch-iot-suite.com) and other open source and custom components.
 
 # Introduction
 
-The general idea of this setup is: We want you to be able to prototype IoT ideas and solutions as quickly as possible. For that, we provide you with data from many different “Things”: A number of Bsoch devices from various domains, as well as some commonly-used prototyping boards.
+The general idea of this setup is: We want you to be able to prototype IoT ideas and solutions as quickly as possible. For that, we provide you with data from many different “Things”: A number of Bosch devices from various domains, as well as some commonly-used prototyping boards.
 
 All of these devices are already connected to a *Messaging Hub* based on [Eclipse Hono](https://www.eclipse.org/hono) running on the Internet. We have also tried to make sure that you can easily access the data and events produced by these devices using multiple APIs.
 
