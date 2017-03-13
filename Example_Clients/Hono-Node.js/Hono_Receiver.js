@@ -90,7 +90,7 @@ function decodeContent(content) {
     try {
         return JSON.parse(str);
     } catch (e) {
-        return bodyStr;
+        return str;
     }
 }
 
