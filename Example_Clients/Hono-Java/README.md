@@ -2,7 +2,7 @@
 
 Simple Java clients for Hono, description can be found in the [Hono User-guide](https://www.eclipse.org/hono/user-guide/).
 
-## [Consumer](https://www.eclipse.org/hono/user-guide/java_client_consumer/)
+## Consumer
 
 ### Clone project
 
@@ -30,6 +30,9 @@ You need the credentials that were given to you. You then execute the consumer b
 $ mvn exec:java -Dexec.mainClass="org.eclipse.hono.App" -Dexec.args="--user <user> --password <password>"
 ```
 
+Direct link to documentation of consumer: [Documentation](https://www.eclipse.org/hono/user-guide/java_client_consumer/)
 
-## [Sender](https://www.eclipse.org/hono/user-guide/java_client_sender/)
+## Sender
 For the sender, please ask one of the Hack coaches.
+
+Direct link to documentation of sender: [Documentation](https://www.eclipse.org/hono/user-guide/java_client_sender/)
