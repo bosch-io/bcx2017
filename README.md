@@ -152,8 +152,8 @@ For a complete list of available operations please refer to the
 [HTTP API documentation](https://things.apps.bosch-iot-cloud.com/documentation/rest/#).
 
 In case you are familiar with [Postman](https://www.getpostman.com/) we also have prepared a 
-[Postman Collection](https://github.com/bsinno/iot-things-examples/tree/master/postman-collection)
-for you to quickly get started (tip: use the environment ``env_CRaaS-prod-environment.json`` to have the correct 
+[Postman Collection](Documentation/Postman)
+for you to quickly get started (tip: use the environment ``env_BCX2017-prod-environment.json`` to have the correct 
 endpoint configured automatically).
 
 ## Java API
