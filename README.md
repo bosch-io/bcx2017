@@ -99,39 +99,58 @@ The root resource of the Bosch IoT Things HTTP API is located at ``https://thing
 All requests and responses are ``JSON``-based so please use ``application/json`` as the ``Content-Type`` for your 
 requests.
 
+In below examples you have to replace _USER_ and _PASS_ with the concrete values.
 ### Search things
 Let's see which Things your user is allowed to see. By default this request will not return more than 25 things.
 
 > GET /search/things
 
+```
+curl -G -u "USER:PASS" --header "x-cr-api-token: 70440375adbe4687bf5ebe4bffad61c5" https://things.apps.bosch-iot-cloud.com/cr/1/search/things
+```
+
 You can further filter or limit the returned results, see the 
 [HTTP API documentation](https://things.apps.bosch-iot-cloud.com/documentation/rest/#) for more information.
 
 ### Retrieve a Thing
-Retrieve a single Thing by its Thing ID:
+The response from the request above returned a JSON-document containing at most 25 things.
+Each thing also contains its id in the returned JSON, e.g. _"thingId":"bcx:rrc.655997720"_.
+You can now query for the details of a specific thing.
 
 > GET /things/{thingId}
 
-You can read only parts of a Thing by specifying the path inside the Thing via the URL path e.g. to read an 
-attribute ``location`` use the following path:
+```
+curl -G -u "USER:PASS" --header "x-cr-api-token: PUT_TOKEN_HERE" https://things.apps.bosch-iot-cloud.com/cr/1/things/bcx:rrc.655997720
+```
 
-> GET /things/{thingId}/attributes/location
+You can read only parts of a Thing by specifying the path inside the Thing via the URL path e.g. to read an 
+attribute ``thingName`` use the following path:
+
+> GET /things/{thingId}/attributes/thingName
+
+```
+curl -G -u "USER:PASS" --header "x-cr-api-token: PUT_TOKEN_HERE" https://things.apps.bosch-iot-cloud.com/cr/1/things/bcx:rrc.655997720/attributes/thingName
+```
 
 ### Modify a Thing
 
 You can either update the whole Thing at once (attention, this overwrites all data of a Thing) or only parts of it 
 e.g. its attributes or a single property value. 
 
-To update the ``location`` attribute of a Thing use the following request:
-> PUT /things/{thingId}/attributes/location
+To update the ``thingName`` attribute of a Thing use the following request:
+> PUT /things/{thingId}/attributes/thingName
 
 Example of JSON request body:
 ```json
 {
-  "longitude": -27.119444,
-  "latitude" : -109.354722
+  "thingName":"SomeOtherName"
 }
 ```
+
+```
+curl -X PUT -u "USER:PASS" -H "Content-Type: application/json" --header "x-cr-api-token: PUT_TOKEN_HERE" -d '{"thingName":"SomeOtherName"}' https://things.apps.bosch-iot-cloud.com/cr/1/things/bcx:rrc.655997720/attributes/thingName
+```
+
 ### Further operations
 
 For a complete list of available operations please refer to the 
