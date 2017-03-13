@@ -115,12 +115,13 @@ You can further filter or limit the returned results, see the
 ### Retrieve a Thing
 The response from the request above returned a JSON-document containing at most 25 things.
 Each thing also contains its id in the returned JSON, e.g. _"thingId":"bcx:rrc.655997720"_.
-You can now query for the details of a specific thing.
+We have created a dummy-thing you can play around with.
+You can now query for the details of this dummy-thing.
 
 > GET /things/{thingId}
 
 ```
-curl -G -u "USER:PASS" --header "x-cr-api-token: PUT_TOKEN_HERE" https://things.apps.bosch-iot-cloud.com/cr/1/things/bcx:rrc.655997720
+curl -G -u "USER:PASS" --header "x-cr-api-token: PUT_TOKEN_HERE" https://things.apps.bosch-iot-cloud.com/cr/1/things/bcx:ThingsDummyDevice-0000
 ```
 
 You can read only parts of a Thing by specifying the path inside the Thing via the URL path e.g. to read an 
@@ -129,26 +130,20 @@ attribute ``thingName`` use the following path:
 > GET /things/{thingId}/attributes/thingName
 
 ```
-curl -G -u "USER:PASS" --header "x-cr-api-token: PUT_TOKEN_HERE" https://things.apps.bosch-iot-cloud.com/cr/1/things/bcx:rrc.655997720/attributes/thingName
+curl -G -u "USER:PASS" --header "x-cr-api-token: PUT_TOKEN_HERE" https://things.apps.bosch-iot-cloud.com/cr/1/things/bcx:ThingsDummyDevice-0000/attributes/thingName
 ```
 
 ### Modify a Thing
 
 You can either update the whole Thing at once (attention, this overwrites all data of a Thing) or only parts of it 
-e.g. its attributes or a single property value. 
+e.g. its attributes or a single property value.
 
-To update the ``thingName`` attribute of a Thing use the following request:
-> PUT /things/{thingId}/attributes/thingName
+To update a single property value for the attribute ``dummyAtttribute`` of a Thing use the following request:
+> PUT /things/{thingId}/attributes/dummyAttribue
 
-Example of JSON request body:
-```json
-{
-  "thingName":"SomeOtherName"
-}
-```
 
 ```
-curl -X PUT -u "USER:PASS" -H "Content-Type: application/json" --header "x-cr-api-token: PUT_TOKEN_HERE" -d '"SomeOtherName"' https://things.apps.bosch-iot-cloud.com/cr/1/things/bcx:rrc.655997720/attributes/thingName
+curl -X PUT -u "USER:PASS" -H "Content-Type: application/json" --header "x-cr-api-token: PUT_TOKEN_HERE" -d '"SomeOtherName"' https://things.apps.bosch-iot-cloud.com/cr/1/things/bcx:ThingsDummyDevice-0000/attributes/thingName
 ```
 
 ### Further operations
