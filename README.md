@@ -1,10 +1,10 @@
-# Welcome to [Bosch Connected Experience 2017](http://bcw.bosch-si.com/berlin/bcw-hackathon/)!
+﻿# Welcome to [Bosch Connected Experience 2017](http://bcw.bosch-si.com/berlin/bcw-hackathon/)!
 
 In this repository, you will find all the information needed to get started with the device hub we set up for this hackathon. The device hub itself is a custom setup for this hackathon and composed of components from the [Eclipse IoT](https://iot.eclipse.org) community, services from the [Bosch IoT Suite](https://bosch-iot-suite.com) and other open source and custom components.
 
 # Introduction
 
-The general idea of this setup is: We want you to be able to prototype IoT ideas and solutions as quickly as possible. For that, we provide you with data from many different “Things”: A number of Bsoch devices from various domains, as well as some commonly-used prototyping boards.
+The general idea of this setup is: We want you to be able to prototype IoT ideas and solutions as quickly as possible. For that, we provide you with data from many different “Things”: A number of Bosch devices from various domains, as well as some commonly-used prototyping boards.
 
 All of these devices are already connected to a *Messaging Hub* based on [Eclipse Hono](https://www.eclipse.org/hono) running on the Internet. We have also tried to make sure that you can easily access the data and events produced by these devices using multiple APIs.
 
@@ -40,43 +40,43 @@ All telemetry data sent in from devices is also fed into an istance of the open 
 
 If you want to just quickly retrieve historical data without getting too much into InfluxDB, use these simple webservices we created for you:
 
-```
-# list all devices with available telemetry data   http://bcx-workhorse.bosch-iot-suite.com/telemetry
-# list all devices with available event data
-http://bcx-workhorse.bosch-iot-suite.com/events      
+List all devices with available telemetry data:
+> http://bcx-workhorse.bosch-iot-suite.com/telemetry
 
-# Get last ten telemetry data sets from device rrc.655997720 (one of our thermostats)
-http://bcx-workhorse.bosch-iot-suite.com/telemetry?deviceId=rrc.655997720&limit=10
-# Get last ten events from device esp8266.60019400998b
-http://bcx-workhorse.bosch-iot-suite.com/events?deviceId=esp8266.60019400998b&limit=10
+List all devices with available event data:
+> http://bcx-workhorse.bosch-iot-suite.com/events      
 
-```
+Get last ten telemetry data sets from device rrc.655997720 (one of our thermostats):
+> http://bcx-workhorse.bosch-iot-suite.com/telemetry?deviceId=rrc.655997720&limit=10
+
+Get last ten events from device esp8266.60019400998b
+> http://bcx-workhorse.bosch-iot-suite.com/events?deviceId=esp8266.60019400998b&limit=10
 
 Interested to know more and have more flexible options? Read on.
 
-Telemetry is fed into the `hono-telemetry` database, events are fed into the `hono-events` database. Credentials for accessing the InfluxDB can be found on our passwords sheet.
+Telemetry is fed into the `bcx2017_telemetry` database, events are fed into the `bcx2017_events` database. Credentials for accessing the InfluxDB can be found on our passwords sheet.
 
 In order to retrieve data, you need to write queries in the [InfluxQL query language](https://docs.influxdata.com/influxdb/v1.2/query_language/) and execute them via e.g. `curl`, the InfluxDB CLI tools, or another InfluxDB client (e.g. Node-RED InfluxDB nodes).
 
 Here are some examples you can use as a starting point for your own experiments.
 
-## Read out latest 10 telemetry data sets from the XDK with the MAC address 7C:EC:79:D3:33:82
+## Read out latest 10 telemetry data sets from one of the Bosch wall thermostats
 
-> SELECT * from xdk.7cec79d33382 ORDER BY time desc LIMIT 10
-
-```
-curl -G 'http://bcx-workhorse.bosch-iot-suite.com.com:8086/query?pretty=true&u=USERNAME&p=PASSWORD' --data-urlencode "db=hono_telemetry" --data-urlencode "q=SELECT \"*\" FROM \"xdk.7cec79d33382\" ORDER BY time desc LIMIT 10"
-```
-
-## Read out latest entry from all Nexo nutrunners
-
-> select * from /nexo\..*/ order by time desc limit 1
+> SELECT * from "rrc.655997720" ORDER BY time desc LIMIT 10
 
 ```
-curl -G 'http://bcx-workhorse.bosch-iot-suite.com:8086/query?pretty=true&u=USERNAME&p=PASSWORD' --data-urlencode "db=hono_telemetry" --data-urlencode "q=SELECT \"*\" FROM \"/nexo\\..*/\" ORDER BY time desc LIMIT 1"
+curl -G -u USER:PASS --data-urlencode "db=bcx2017_telemetry" http://bcx-workhorse.bosch-iot-suite.com:8086/query --data-urlencode 'q=SELECT * from "rrc.655997720" order by time desc limit 10' --data-urlencode pretty=true
 ```
 
-Further guidance can be found in the [Getting Started](https://docs.influxdata.com/influxdb/v1.2/introduction/getting_started/) section of the InfluxDB documentation and on the [InfluxDB API page](https://docs.influxdata.com/influxdb/v1.2/tools/api/) (see "query").
+## Read out latest entry from all XDKs
+
+> select * from /xdk\..*/ order by time desc limit 1
+
+```
+curl -G -u USER:PASS --data-urlencode "db=bcx2017_telemetry" http://bcx-workhorse.bosch-iot-suite.com:8086/query --data-urlencode 'q=SELECT * from /xdk\..*/ order by time desc limit 10' --data-urlencode pretty=true
+```
+
+Further guidance can be found in the [Getting Started](https://docs.influxdata.com/influxdb/v1.2/introduction/getting_started/) section of the InfluxDB documentation and on the [InfluxDB API page](https://docs.influxdata.com/influxdb/v1.2/tools/api/) (see "query").
 
 # What if I want to look at the whole device, not just messages? 
 
@@ -99,39 +99,53 @@ The root resource of the Bosch IoT Things HTTP API is located at ``https://thing
 All requests and responses are ``JSON``-based so please use ``application/json`` as the ``Content-Type`` for your 
 requests.
 
+In below examples you have to replace _USER_ and _PASS_ with the concrete values.
 ### Search things
 Let's see which Things your user is allowed to see. By default this request will not return more than 25 things.
 
 > GET /search/things
 
+```
+curl -G -u "USER:PASS" --header "x-cr-api-token: PUT_TOKEN_HERE" https://things.apps.bosch-iot-cloud.com/cr/1/search/things
+```
+
 You can further filter or limit the returned results, see the 
 [HTTP API documentation](https://things.apps.bosch-iot-cloud.com/documentation/rest/#) for more information.
 
 ### Retrieve a Thing
-Retrieve a single Thing by its Thing ID:
+The response from the request above returned a JSON-document containing at most 25 things.
+Each thing also contains its id in the returned JSON, e.g. _"thingId":"bcx:rrc.655997720"_.
+We have created a dummy-thing you can play around with.
+You can now query for the details of this dummy-thing.
 
 > GET /things/{thingId}
 
-You can read only parts of a Thing by specifying the path inside the Thing via the URL path e.g. to read an 
-attribute ``location`` use the following path:
+```
+curl -G -u "USER:PASS" --header "x-cr-api-token: PUT_TOKEN_HERE" https://things.apps.bosch-iot-cloud.com/cr/1/things/bcx:ThingsDummyDevice-0000
+```
 
-> GET /things/{thingId}/attributes/location
+You can read only parts of a Thing by specifying the path inside the Thing via the URL path e.g. to read an 
+attribute ``thingName`` use the following path:
+
+> GET /things/{thingId}/attributes/thingName
+
+```
+curl -G -u "USER:PASS" --header "x-cr-api-token: PUT_TOKEN_HERE" https://things.apps.bosch-iot-cloud.com/cr/1/things/bcx:ThingsDummyDevice-0000/attributes/thingName
+```
 
 ### Modify a Thing
 
 You can either update the whole Thing at once (attention, this overwrites all data of a Thing) or only parts of it 
-e.g. its attributes or a single property value. 
+e.g. its attributes or a single property value.
 
-To update the ``location`` attribute of a Thing use the following request:
-> PUT /things/{thingId}/attributes/location
+To update a single property value for the attribute ``dummyAttribute`` of a Thing use the following request:
+> PUT /things/{thingId}/attributes/dummyAttribue
 
-Example of JSON request body:
-```json
-{
-  "longitude": -27.119444,
-  "latitude" : -109.354722
-}
+
 ```
+curl -X PUT -u "USER:PASS" -H "Content-Type: application/json" --header "x-cr-api-token: PUT_TOKEN_HERE" -d '"TotallyNewDummyValue"' https://things.apps.bosch-iot-cloud.com/cr/1/things/bcx:ThingsDummyDevice-0000/attributes/dummyAttribute
+```
+
 ### Further operations
 
 For a complete list of available operations please refer to the 
@@ -159,11 +173,14 @@ of using the Java Client.
 [Things Integration Client](https://cr.apps.bosch-iot-cloud.com/dokuwiki/doku.php?id=005_dev_guide:005_java_api:005_java_api)
 * [Code examples](https://github.com/bsinno/iot-things-examples) of using the Things Integration Client (Java)
 
-# That was a lot of APIs – is there anything like a graphical dashboard…?
+# Getting started with the Developer Console
 
-We're glad you asked. Cue the [Bosch IoT Developer Console](http://console.bosch-iot-suite.com)
+The [Developer Console](https://console.bosch-iot-suite.com) lets you easily interact with the Bosch IoT Suite services in order to connect a device and build IoT applications. Click on the sub-topics to find out more: 
 
-[to do] Documentation around Developer Console
+* [Register a new device](Documentation/DevConsole/register_new.md)
+* [Send device payload to Bosch IoT Things via Hono](Documentation/DevConsole/send_telemetry_data.md)
+* [Visualize device payload](Documentation/DevConsole/visualize_data.md)
+* [Describe a device with thing types](Documentation/DevConsole/create_thingtype.md)
 
 # What else do I need to get started?
 
