@@ -106,7 +106,7 @@ Let's see which Things your user is allowed to see. By default this request will
 > GET /search/things
 
 ```
-curl -G -u "USER:PASS" --header "x-cr-api-token: 70440375adbe4687bf5ebe4bffad61c5" https://things.apps.bosch-iot-cloud.com/cr/1/search/things
+curl -G -u "USER:PASS" --header "x-cr-api-token: PUT_TOKEN_HERE" https://things.apps.bosch-iot-cloud.com/cr/1/search/things
 ```
 
 You can further filter or limit the returned results, see the 
