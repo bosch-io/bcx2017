@@ -12,7 +12,7 @@ Please clone the git project and change to the current directory
 
 ```shell
 $ git clone https://github.com/bsinno/bcx2017.git
-$ cd Example_Clients/Hono-Java
+$ cd Hono_Example_Clients/Hono-Java
 ```
 
 ### Build it
