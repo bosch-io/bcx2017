@@ -25,6 +25,8 @@ public class App {
 
     private final CountDownLatch latch;
 
+    private TelemetryHandler telemetryHandler = new TelemetryHandler();
+    
     public App(String[] args) {
 	Credentials honoConsumerCreds = new Credentials();
         parseCmdline(honoConsumerCreds, args);
@@ -80,7 +82,7 @@ public class App {
 
         connectionTracker.compose(honoClient -> {
                     honoClient.createTelemetryConsumer(TENANT_ID,
-                            msg -> handleTelemetryMessage(msg), consumerFuture.completer());
+                            msg -> telemetryHandler.handleTelemetryMessage(msg), consumerFuture.completer());
                 },
                 consumerFuture);
 
