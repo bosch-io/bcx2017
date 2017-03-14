@@ -2,7 +2,7 @@
 
 The connected devices publish their telemetry data and events to an [Eclipse Hono](https://www.eclipse.org/hono/) instance accessible at `hono.bosch-iot-suite.com`.
 
-You can consume the device data by connecting an AMQP 1.0 client to Hono and listening in on the `telemetry` or `event` addresses respectively. We have prepared some example client code using various programming languages in the [Example_Clients/](Example_Clients/) directory.
+You can consume the device data by connecting an AMQP 1.0 client to Hono and listening in on the `telemetry` or `event` addresses respectively. We have prepared some example client code using various programming languages in the [Hono_Example_Clients/](./Hono_Example_Clients/) directory.
 
 Hono is actually payload-agnostic, so you will just receive the raw payload in the AMQP client in the same way as it was fed into Hono by the device.
 
