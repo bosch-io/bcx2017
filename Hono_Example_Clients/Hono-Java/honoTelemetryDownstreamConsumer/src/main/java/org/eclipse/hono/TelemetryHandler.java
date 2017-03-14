@@ -1,7 +1,5 @@
 package org.eclipse.hono;
 
-//import org.eclipse.hono.client.HonoClient;
-//import org.eclipse.hono.client.MessageConsumer;
 import org.eclipse.hono.util.MessageHelper;
 import org.apache.qpid.proton.amqp.messaging.AmqpValue;
 import org.apache.qpid.proton.amqp.messaging.Data;
