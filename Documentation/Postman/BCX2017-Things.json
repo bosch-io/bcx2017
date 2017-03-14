@@ -204,6 +204,28 @@
       "response": []
     },
     {
+      "name": "Search: All Things (minimal output)",
+      "request": {
+        "body": {},
+        "description": "",
+        "header": [
+          {
+            "description": "",
+            "key": "x-cr-api-token",
+            "value": "{{x-cr-api-token}}"
+          },
+          {
+            "description": "",
+            "key": "Authorization",
+            "value": "{{authorization}}"
+          }
+        ],
+        "method": "GET",
+        "url": "{{craas.baseurl}}/search/things?option=limit(0,200)&fields=thingId,attributes(deviceId)"
+      },
+      "response": []
+    },
+    {
       "name": "Query: A List of Things",
       "request": {
         "body": {},
