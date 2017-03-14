@@ -13,22 +13,22 @@ adaptive control – for ultra-fast commissioning, energy-saving.
 ## Available devices
 
 The PRC 7000 are identified through names, printed on the of the device. 
-The following devices are available:
+They publish telemetry into Hono using the device IDs `PRC.<serialnumber>`. The following devices are available:
 
-|         Name            |          MAC        |   IP   |
-|-------------------------|---------------------|--------|
-|  PRC006034AEDAC4  	  |  00:60:34:AE:DA:C4  |  DHCP  |
-|  PRC006034AEEF5D  	  |  00:60:34:AE:EF:5D  |  DHCP  |
-|  PRC006034AEDAC2        |  00:60:34:AE:DA:C2  |  DHCP  |
-|  PRC006034AEEFEC        |  00:60:34:AE:EF:EC  |  DHCP  |
-|  PRC006034AEED79        |  00:60:34:AE:ED:79  |  DHCP  |
-|  PRC006034ADE693        |  00:60:34:AD:E6:93  |  DHCP  |
-|  PRC006034AF1C59        |  00:60:34:AF:1C:59  |  DHCP  |
-|  PRC006034AF1BCB        |  00:60:34:AF:1B:CB  |  DHCP  |
-|  PRC006034AF1BD5        |  00:60:34:AF:1B:D5  |  DHCP  |
-|  PRC006034AF0673        |  00:60:34:AF:06:73  |  DHCP  |
+|         Name             |          MAC        |   IP   |
+|--------------------------|---------------------|--------|
+|  PRC.006034AEDAC4  	     |  00:60:34:AE:DA:C4  |  DHCP  |
+|  PRC.006034AEEF5D  	     |  00:60:34:AE:EF:5D  |  DHCP  |
+|  PRC.006034AEDAC2        |  00:60:34:AE:DA:C2  |  DHCP  |
+|  PRC.006034AEEFEC        |  00:60:34:AE:EF:EC  |  DHCP  |
+|  PRC.006034AEED79        |  00:60:34:AE:ED:79  |  DHCP  |
+|  PRC.006034ADE693        |  00:60:34:AD:E6:93  |  DHCP  |
+|  PRC.006034AF1C59        |  00:60:34:AF:1C:59  |  DHCP  |
+|  PRC.006034AF1BCB        |  00:60:34:AF:1B:CB  |  DHCP  |
+|  PRC.006034AF1BD5        |  00:60:34:AF:1B:D5  |  DHCP  |
+|  PRC.006034AF0673        |  00:60:34:AF:06:73  |  DHCP  |
 
-You will find the IP adress over the display menu. 
+You can find the IP adress in the display menu. 
 
 
 ## Device capabilities

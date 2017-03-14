@@ -49,6 +49,7 @@ This adapter exposes an endpoint which can be called by the Sigfox adapter. In S
 	"station" : "{station}",  
 	"lat" : "{lat}",  
 	"lng" : "{lng}",  
+	"seqNumber” : "{seqNumber}",  
 	"data" : "{data}"  
 }  
 
@@ -91,6 +92,7 @@ A typical incoming Sigfox payload would look something like this:
 	"station" : "0DF1",
 	"lat" : "49.0",
 	"lng" : "3.0",
+	"seqNumber” : "31",
 	"data" : "1234"
 }
 ```

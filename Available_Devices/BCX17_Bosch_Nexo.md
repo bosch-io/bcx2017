@@ -10,23 +10,7 @@ On Nexo the complete control unit is in the nutrunner – the first of its kind.
 ![Bosch Rexroth Nexo](images/Bosch_Nexo.png "Bosch Rexroth Nexo")
 ## Available devices
 
-All devices are identified through the information, which can be found on the integrated display. 
-The following devices are available:
-
-|         Name            |          MAC        |   IP   |
-|-------------------------|---------------------|--------|
-|  will be updated on thursday  |  ...  |  DHCP  |
-|  ...  	  |  ...  |  DHCP  |
-|  ...        |  ...  |  DHCP  |
-|  ...        |  ...  |  DHCP  |
-|  ...        |  ...  |  DHCP  |
-|  ...        |  ...  |  DHCP  |
-|  ...        |  ...  |  DHCP  |
-|  ...        |  ...  |  DHCP  |
-|  ...        |  ...  |  DHCP  |
-|  ...        |  ...  |  DHCP  |
-
-You will find the IP adress over the display menu. 
+All devices are identified through the information, which can be found on the integrated display. They publish telemetry into Hono using the device IDs `nexo.<serialnumber>`. You can also find the IP adress in the display menu. 
 
 
 ## Device capabilities

@@ -13,6 +13,8 @@ I'm a programmable sensor device & a prototyping platform for any IoT use case y
 
 The XDK Device are identified through their MAC address, printed at the back of the device. A lot of these devices are available!
 
+XDKs publish telemetry and events into Hono using a device ID  `xdk.<macaddress>`.
+
 ## Device capabilities
 
 The XDK has a number of sensors. All of these values are transmitted via LWM2M every 10 seconds:
@@ -28,9 +30,6 @@ The XDK has a number of sensors. All of these values are transmitted via LWM2M e
 In addition, the device provides the following events
 
 - (2x) Button press
-
-### Example telemetry data
-
 
 ## Ideas for using this device
 

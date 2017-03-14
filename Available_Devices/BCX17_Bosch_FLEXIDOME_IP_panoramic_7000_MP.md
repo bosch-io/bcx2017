@@ -11,7 +11,9 @@ The Bosch FLEXIDOME IP panoramic 7000 MP is a nice fisheye surveillance camera t
 
 ## Available devices
 
-The FLEXIDOME IP panoramic cameras are identified through their IP address, printed on the of the device. The following devices are available:
+The FLEXIDOME IP panoramic cameras are identified through their IP address, printed on the of the device. They publish events into Hono using the device IDs `panoramic.<serialnumber>`.
+
+The following devices are available:
 
 | URL                    | Serial number      | MAC               |
 |------------------------|--------------------|-------------------|

@@ -11,7 +11,9 @@ The Bosch DINION IP starlight 6000 HD is a excellent low-light performance surve
 
 ## Available devices
 
-The DINION cameras are identified through their IP address, printed on the of the device. The following devices are available:
+The DINION cameras are identified through their IP address, printed on the of the device. They publish events into Hono using the device ID `dinon.<serialnumber>`.
+
+The following devices are available:
 
 | URL                    | Serial number      | MAC               |
 |------------------------|--------------------|-------------------|

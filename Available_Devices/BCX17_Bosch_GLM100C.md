@@ -21,6 +21,7 @@ Ten measurement modes - length, area, volume, angle, min/max, continuous, single
 
 ## Available devices
 
+We have in total 5 devices available. They publish events into Hono using the device IDs `glm.<bluetooth_id>`.
 
 ## Device capabilities
 
