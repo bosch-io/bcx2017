@@ -5,23 +5,23 @@ package main
 // #cgo LDFLAGS: -L/usr/local/lib
 
 import (
+	"flag"
 	"fmt"
 	"log"
-	"os"
 
+	"github.com/pborman/uuid"
 	"qpid.apache.org/amqp"
 	"qpid.apache.org/electron"
-	"flag"
-	"github.com/pborman/uuid"
 )
 
 func init() {
 }
 
 var clientId string
+
 const bufferSize uint = 100
 
-func startReceiver(source string, connection electron.Connection) <- chan amqp.Message {
+func startReceiver(source string, connection electron.Connection) <-chan amqp.Message {
 	out := make(chan amqp.Message, bufferSize)
 
 	r, err := connection.Receiver(electron.Source(source),
@@ -99,8 +99,8 @@ func main() {
 		log.Fatalf("Unable to connect to Hono server: %v", err)
 	}
 
-	telemetry := startReceiver("telemetry/" + *flagTenant, connection)
-	events := startReceiver("event/" + *flagTenant, connection)
+	telemetry := startReceiver("telemetry/"+*flagTenant, connection)
+	events := startReceiver("event/"+*flagTenant, connection)
 
 	printMessages(telemetry, events)
 

@@ -12,3 +12,9 @@ After successful installation, run the program as follows:
 go run hono-receiver.go --host myhostname --port 15672 --user me --pass secret
 ```
 
+or using docker:
+
+```
+docker build -t hono-receiver .
+docker run --name hr --rm -e HOST=$HOST -e USER=$USER -e PASS=$PASS -e TENANT=$TENANT hono-receiver
+```
