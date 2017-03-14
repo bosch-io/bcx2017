@@ -29,7 +29,7 @@ Most devices supply both telemetry data (information on the current device statu
 
 - [The first step: Find out how to receive device messages](1_Receive_Device_Messages.md)
 - [Find out how to use the time series database for historical data](2_Time_Series_Data.md)
-- [Find out how to work with the Bosch IoT Things Digital Twin approach](3_Digital_Twin.md)
+- [Find out how to work with the Digital Twin](3_Digital_Twin.md)
 - [Find out how to view devices in the Developer Console](4_Developer_Console.md)
 
 
