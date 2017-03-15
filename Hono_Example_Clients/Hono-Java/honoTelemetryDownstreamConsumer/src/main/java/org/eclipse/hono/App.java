@@ -3,14 +3,9 @@ package org.eclipse.hono;
 import io.vertx.core.Future;
 import io.vertx.core.Vertx;
 import io.vertx.proton.ProtonClientOptions;
-import org.apache.qpid.proton.amqp.messaging.AmqpValue;
-import org.apache.qpid.proton.amqp.messaging.Data;
-import org.apache.qpid.proton.amqp.messaging.Section;
-import org.apache.qpid.proton.message.Message;
 import org.eclipse.hono.client.HonoClient;
 import org.eclipse.hono.client.MessageConsumer;
 import org.eclipse.hono.connection.ConnectionFactoryImpl;
-import org.eclipse.hono.util.MessageHelper;
 
 import java.util.concurrent.CountDownLatch;
 
@@ -52,9 +47,12 @@ public class App {
             else if ("--password".equals(args[i])) {
                 honoConsumerCreds.setPassword(args[++i]);
             }
+            else if ("--deviceId".equals(args[i])) {
+                telemetryHandler.setFilterDeviceId(args[++i]);
+            }
         }
         if (honoConsumerCreds.getUser() == null || honoConsumerCreds.getPassword() == null) {
-            System.err.println("Usage: <app> --user <user> --password <password>");
+            System.err.println("Usage: <app> --user <user> --password <password> [--deviceId <deviceId>]");
             System.exit(-1);
         }
     }
@@ -93,25 +91,6 @@ public class App {
         vertx.close();
     }
 
-    private void handleTelemetryMessage(final Message msg) {
-        final Section body = msg.getBody();
-        String content = null;
-        if (!(body instanceof Data))
-            return;
-
-        content = ((Data) msg.getBody()).getValue().toString();
-
-        final String deviceId = MessageHelper.getDeviceId(msg);
-
-        StringBuilder sb = new StringBuilder("received message [device: ").
-                append(deviceId).append(", content-type: ").append(msg.getContentType()).append(" ]: ").append(content);
-
-        if (msg.getApplicationProperties() != null) {
-            sb.append(" with application properties: ").append(msg.getApplicationProperties().getValue());
-        }
-
-        System.out.println(sb.toString());
-    }
 
     private class Credentials {
         String user;
